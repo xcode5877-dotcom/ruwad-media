@@ -84,7 +84,7 @@ body{font-family:Rubik,sans-serif;direction:rtl;color:#1A2B29}
 .night{background:radial-gradient(circle at 26% 74%, rgba(255,205,120,.55) 0, rgba(255,205,120,.12) 32%, transparent 55%), linear-gradient(180deg,#0F2826 0%,#1B4642 100%);color:#fff}
 .cover-h{position:absolute;top:150px;right:90px;left:90px}
 .cover-h .a{font-size:96px;font-weight:800;line-height:1.15}
-.cover-h .b{font-family:Marhey;font-weight:700;font-size:88px;color:var(--hl);margin-top:14px;display:inline-block;transform:rotate(-3deg)}
+.cover-h .b{font-family:Marhey;font-weight:700;font-size:88px;color:#14332F;background:#FFD84D;padding:4px 34px 14px;border-radius:14px 26px 18px 30px;margin-top:26px;display:inline-block;transform:rotate(-3deg);box-shadow:0 12px 30px rgba(0,0,0,.35)}
 .notif{position:absolute;top:620px;right:110px;width:820px;background:rgba(255,255,255,.97);color:#1A2B29;border-radius:40px;padding:30px 36px;display:flex;gap:26px;align-items:center;box-shadow:0 0 0 10px rgba(255,255,255,.08),0 30px 80px rgba(0,0,0,.45);transform:rotate(2deg)}
 .notif .app{width:88px;height:88px;border-radius:24px;background:var(--accent);flex:none;display:flex;align-items:center;justify-content:center;font-family:Marhey;font-size:46px;font-weight:700;color:#fff}
 .notif .t{display:flex;justify-content:space-between;font-size:30px;color:#6B7775}
@@ -147,7 +147,7 @@ slides.append(page(
     + svg(scene, 1080, 800, "position:absolute;bottom:0;left:0")
     + "<div class='notif'><div class='app'>ا</div><div style='flex:1'><div class='t'><b>ابني</b><span>الآن</span></div><div class='m'>يمّا… بدي أحكيلك إشي، بس لا تعصّبي</div></div></div>"
     + "<div class='pg' style='color:#fff'>1/6</div>"
-    + "<div class='hand' style='position:absolute;bottom:50px;right:90px;font-size:40px;color:#FFE36E'>اقرأوها للآخر ←</div>",
+    + "<div class='hand' style='position:absolute;bottom:50px;right:90px;font-size:40px;color:#fff'>اقرأوها للآخر ←</div>",
     "night"))
 
 # ---- 2. the letter in his notebook ----
