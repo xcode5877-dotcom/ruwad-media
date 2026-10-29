@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:800;src:url(rubik-arabic-800-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:700;src:url(rubik-latin-700-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0E2624}
+body{font-family:R,L;color:#fff;position:relative}
+#bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#2B5E59 0,#163A37 45%,#0B201E 100%)}
+#grid{position:absolute;inset:-200px;background-image:linear-gradient(rgba(255,255,255,.05) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.05) 2px,transparent 2px);background-size:120px 120px}
+#glow{position:absolute;width:1400px;height:1400px;left:-160px;top:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,216,77,.25) 0,rgba(255,216,77,0) 60%)}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+.layer{position:absolute;inset:0;opacity:0}
+.c{position:absolute;left:0;right:0;text-align:center}
+.chip{display:inline-block;background:#FFD84D;color:#14332F;font-weight:800;border-radius:999px;padding:14px 44px}
+#tick{position:absolute;top:230px;left:0;right:0;text-align:center;font-family:L;font-weight:700;font-size:36px;letter-spacing:10px;color:#FFD84D;opacity:.85;direction:ltr}
+#phone{position:absolute;left:250px;top:610px;width:580px;height:1031px;border-radius:72px;background:#05110F;padding:18px;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 4px rgba(255,255,255,.15)}
+#screen{width:100%;height:100%;border-radius:56px;overflow:hidden;background:#fff}
+#screen img{width:100%;height:100%;object-fit:cover;display:block}
+.call{position:absolute;background:#fff;color:#14332F;border-radius:30px;padding:22px 30px;font-size:44px;font-weight:900;line-height:1.2;box-shadow:0 16px 0 rgba(0,0,0,.25);white-space:nowrap}
+.call small{display:block;font-size:30px;font-weight:700;color:#E2574C;margin-top:4px}
+.wa{position:absolute;left:150px;right:150px;background:#fff;color:#22524E;border-radius:999px;padding:26px 0;text-align:center}
+.wa small{display:block;font-size:38px;color:#5E6E6B;font-weight:700}
+.wa b{font-family:L;font-size:84px;font-weight:900;direction:ltr;display:block;line-height:1.1}
+#grain{position:absolute;inset:0;opacity:.06;mix-blend-mode:overlay}
+</style></head><body>
+<div id="bg"></div><div id="grid"></div><div id="glow"></div>
+<div id="tick">THE COUNTDOWN IS ON</div>
+
+<div class="layer" id="s1">
+  <div class="c" id="h1" style="top:560px;font-size:84px;font-weight:900">مهمة الرياضيات المحوسبة</div>
+  <div class="c" id="h2" style="top:690px;font-size:190px;font-weight:900;color:#FFD84D;line-height:1.1">على الشاشة</div>
+  <div class="c" id="h3" style="top:1060px"><span class="chip" style="font-size:66px;background:#E2574C;color:#fff">ابنك متعوّد يحلّ هيك؟</span></div>
+</div>
+
+<div class="layer" id="s2">
+  <div class="c" id="t2" style="top:330px;font-size:70px;font-weight:900;line-height:1.25">طلاب رواد بيتدرّبوا<br><span style="color:#FFD84D">على الشاشة كل يوم</span></div>
+  <div class="call" id="k1" style="top:820px;right:40px">🎯 تحدّي اليوم<small>كل يوم، 45 ثانية</small></div>
+  <div class="call" id="k2" style="top:1150px;left:30px">✓ الجواب بينفحص فورًا<small>والغلط بنرجعله</small></div>
+  <div class="call" id="k3" style="top:1430px;right:40px">🧲 مادة امتحان المدرسة<small>فيزياء الثامن · القوى</small></div>
+</div>
+
+<div id="phone"><div id="screen"><img id="shot"></div></div>
+<div class="layer" id="s3">
+  <div class="c" id="t3" style="top:330px;font-size:84px;font-weight:900;line-height:1.2">التلفون؟<br><span style="color:#FFD84D">صار يدرّس.</span></div>
+</div>
+
+<div class="layer" id="s4">
+  <img id="logo" src="logo-white.png" style="position:absolute;left:390px;top:330px;width:300px">
+  <div class="c" id="s4a" style="top:680px;font-size:112px;font-weight:900;line-height:1.15">بلّش اليوم<br><span style="color:#FFD84D">مش ليلة الامتحان</span></div>
+  <div class="c" id="s4b" style="top:1040px;font-size:50px;font-weight:700;opacity:.92;line-height:1.5">دروس تحضير + منصة رواد<br>تدريب يومي من البيت · دبورية</div>
+  <div class="wa" id="wa" style="top:1330px"><small>احجزوا ساعاتكم قبل ما تمتلي</small><b>054-6111668</b></div>
+</div>
+
+<div id="flash"></div>
+<canvas id="grain" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eb=x=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+function slam(el,t,t0,from=2.2,dur=.28){const k=p(t,t0,t0+dur);el.style.transform=`scale(${from+(1-from)*eo(k)})`;el.style.opacity=k>0?Math.min(1,k*3):0;}
+function rise(el,t,t0,d=80,dur=.4){const k=eo(p(t,t0,t0+dur));el.style.opacity=k;el.style.transform=`translateY(${(1-k)*d}px)`;}
+function pop(el,t,t0,t1){const k=eb(p(t,t0,t0+.4));const out=p(t,t1-.25,t1);el.style.opacity=Math.min(cl(p(t,t0,t0+.12)),1-out);el.style.transform=`scale(${.4+.6*k}) rotate(${(1-k)*-8}deg)`;}
+function layer(id,t,a,b,f=.15){const el=$(id);el.style.opacity=Math.min(p(t,a,a+f),1-p(t,b-f,b));return el;}
+let seed=1;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647}
+const g=$('grain').getContext('2d');
+function grain(fi){seed=fi*977+13;const im=g.createImageData(540,960);for(let i=0;i<im.data.length;i+=4){const v=rnd()*255;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=255}g.putImageData(im,0,0)}
+// timeline → source seconds of the gameplay capture
+const MAP=[[2.8,4.4,0.6,1.0],[4.4,5.9,4.5,2.0],[5.9,12.1,7.5,2.0],[12.1,15.0,52.0,0.9]];
+function srcFrame(t){for(const [a,b,s,sp] of MAP){if(t<b)return Math.max(1,Math.round((s+(Math.max(t,a)-a)*sp)*30)+1);}return 1600;}
+const T={s2:2.8,s3:12.1,s4:15.0};
+window.render=async function(t,fi){
+  grain(fi);
+  $('grid').style.transform=`translateY(${(t*40)%120}px) rotate(-8deg)`;
+  const beat=Math.pow(1-((t*2)%1),4);
+  $('glow').style.opacity=.55+.45*beat;
+  let fl=0;for(const ti of [T.s2,T.s4]){const k=p(t,ti,ti+.25);if(k>0&&k<1)fl=Math.max(fl,.5*(1-k));}
+  $('flash').style.opacity=fl;
+  $('tick').style.opacity=t<T.s4?.85:0;
+  // S1
+  layer('s1',t,-1,T.s2,.12);
+  slam($('h1'),t,.05,1.6,.25); slam($('h2'),t,.45,2.4,.3); slam($('h3'),t,1.3,1.5,.3);
+  // phone persists through S2+S3
+  const ph=$('phone');
+  const inK=eb(p(t,T.s2,T.s2+.5)), outK=eo(p(t,T.s4-.3,T.s4));
+  ph.style.opacity=t<T.s2?0:1-outK;
+  ph.style.transform=`translateY(${(1-inK)*900}px) rotate(${(1-inK)*8}deg) scale(${1-.1*outK})`;
+  if(t>=T.s2&&t<T.s4){const img=$('shot');const f=srcFrame(t);const src=`src-daily/${String(f).padStart(5,'0')}.jpg`;if(!img.src.endsWith(src)){img.src=src;await img.decode().catch(()=>{});}}
+  layer('s2',t,T.s2,T.s3,.15);
+  rise($('t2'),t,T.s2+.2,60,.35);
+  pop($('k1'),t,T.s2+1.0,T.s2+3.6); pop($('k2'),t,T.s2+4.0,T.s2+6.6); pop($('k3'),t,T.s2+6.6,T.s3+.1);
+  layer('s3',t,T.s3,T.s4,.15); slam($('t3'),t,T.s3+.1,1.6,.3);
+  // S4
+  layer('s4',t,T.s4,99,.12);
+  slam($('logo'),t,T.s4+.1,.4,.45); slam($('s4a'),t,T.s4+.4,1.5,.3); rise($('s4b'),t,T.s4+1.1,50,.4);
+  const wk=eb(p(t,T.s4+1.6,T.s4+2.1));$('wa').style.opacity=cl(p(t,T.s4+1.6,T.s4+1.75));$('wa').style.transform=`translateY(${(1-wk)*300}px)`;
+  return true;
+};
+</script></body></html>

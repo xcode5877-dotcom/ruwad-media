@@ -39,10 +39,10 @@ def page(body): return f"<!doctype html><html lang='ar' dir='rtl'><head><meta ch
 def card(top, g, gname, what, when):
     return f"<div class='card' style='top:{top}px'><div class='g'>{g}<small>{gname}</small></div><div><b>{what}</b><span>{when}</span></div></div>"
 
-def new_reel():
+def new_reel(cover='cov-countdown.jpg', line='أول امتحان مش 26/11 ↑'):
     return page(f"<div class='c' style='top:430px'><span class='chip' style='background:#FFD84D;color:#14332F;font-size:56px'>ريل جديد</span></div>"
-                f"<img src='data:image/jpeg;base64,{b64('cov-countdown.jpg')}' style='position:absolute;top:570px;left:50%;width:470px;margin-left:-235px;border-radius:34px;border:10px solid #fff;transform:rotate(-3deg);box-shadow:0 30px 60px rgba(0,0,0,.45)'>"
-                "<div class='c' style='bottom:400px;font-size:62px;font-weight:900'>أول امتحان مش 26/11 ↑</div>")
+                f"<img src='data:image/jpeg;base64,{b64(cover)}' style='position:absolute;top:570px;left:50%;width:470px;margin-left:-235px;border-radius:34px;border:10px solid #fff;transform:rotate(-3deg);box-shadow:0 30px 60px rgba(0,0,0,.45)'>"
+                "<div class='c' style='bottom:400px;font-size:62px;font-weight:900'>" + line + "</div>")
 
 def tomorrow(cards, foot):
     return page("<div class='c' style='top:420px;font-size:70px;font-weight:800'>العدّاد بيقول</div>"
@@ -78,6 +78,8 @@ STORIES = [
         card(860, 7, 'السابع', 'امتحان رياضيات', 'الخميس 5/11')
         + "<div class='c' style='top:1150px'><span class='chip' style='background:#E2574C;font-size:46px'>والفصلي بعد 22 يوم ⏱</span></div>",
         'مراجعة أخيرة الليلة · <bdi dir=ltr>054-6111668</bdi>')),
+    ("2026-10-31T20:45", "cd-new-reel-screen", new_reel('cov-screen.jpg', 'التدريب صار على الشاشة ↑')),
+    ("2026-11-05T21:15", "cd-new-reel-phone", new_reel('cov-phone.jpg', 'التلفون صار يدرّس ↑')),
     ("2026-11-05T07:15", "cd-luck-7-exam", luck('بالتوفيق يا سابع',
         card(820, 7, 'السابع', 'امتحان رياضيات', 'اليوم'),
         'جاوب السهل أول، وارجع للصعب.<br>إحنا فخورين فيك قبل العلامة 💚')),
