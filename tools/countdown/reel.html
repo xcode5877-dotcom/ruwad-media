@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:800;src:url(rubik-arabic-800-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:500;src:url(rubik-latin-500-normal.woff2)}
+@font-face{font-family:L;font-weight:700;src:url(rubik-latin-700-normal.woff2)}
+@font-face{font-family:L;font-weight:800;src:url(rubik-latin-800-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0E2624}
+body{font-family:R,L;color:#fff;position:relative}
+#bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#2B5E59 0,#163A37 45%,#0B201E 100%)}
+#grid{position:absolute;inset:-200px;background-image:linear-gradient(rgba(255,255,255,.05) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.05) 2px,transparent 2px);background-size:120px 120px}
+#glow{position:absolute;width:1400px;height:1400px;left:-160px;top:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,216,77,.28) 0,rgba(255,216,77,0) 60%)}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+#ring{position:absolute;left:140px;top:560px;width:800px;height:800px}
+.layer{position:absolute;inset:0;opacity:0}
+.c{position:absolute;left:0;right:0;text-align:center}
+.num{font-family:L;font-weight:900;direction:ltr;letter-spacing:-6px}
+.chip{display:inline-block;background:#FFD84D;color:#14332F;font-weight:800;border-radius:999px;padding:14px 44px}
+.card{position:absolute;left:90px;right:90px;height:250px;border-radius:40px;background:#fff;color:#14332F;display:flex;align-items:center;padding:0 50px;gap:36px;box-shadow:0 22px 0 rgba(0,0,0,.25)}
+.card .g{flex:none;width:160px;height:160px;border-radius:32px;background:#22524E;color:#FFD84D;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:62px;flex-direction:column;line-height:1}
+.card .g small{font-size:28px;color:#fff;font-weight:700;margin-top:8px}
+.card .t{flex:1}
+.card .t b{display:block;font-size:56px;font-weight:900;line-height:1.15}
+.card .t span{display:block;font-size:44px;font-weight:700;color:#E2574C;margin-top:6px}
+#tick{position:absolute;top:230px;left:0;right:0;text-align:center;font-family:L;font-weight:700;font-size:40px;letter-spacing:10px;color:#FFD84D;opacity:.9}
+.wa{position:absolute;left:150px;right:150px;background:#fff;color:#22524E;border-radius:999px;padding:26px 0;text-align:center}
+.wa small{display:block;font-size:38px;color:#5E6E6B;font-weight:700}
+.wa b{font-family:L;font-size:84px;font-weight:900;direction:ltr;display:block;line-height:1.1}
+#grain{position:absolute;inset:0;opacity:.07;mix-blend-mode:overlay}
+</style></head><body>
+<div id="bg"></div><div id="grid"></div><div id="glow"></div>
+<div id="stage" style="position:absolute;inset:0;transform:translateY(170px)">
+<svg id="ring" viewBox="0 0 800 800"><circle cx="400" cy="400" r="370" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10"/><circle id="arc" cx="400" cy="400" r="370" fill="none" stroke="#FFD84D" stroke-width="10" stroke-linecap="round" transform="rotate(-90 400 400)" stroke-dasharray="2325" stroke-dashoffset="2325"/></svg>
+<div id="tick">THE COUNTDOWN IS ON</div>
+
+<!-- S1: 26/11 struck -->
+<div class="layer" id="s1">
+  <div class="c" id="s1a" style="top:520px;font-size:66px;font-weight:700;opacity:.9">الإعلان بيقول الامتحانات…</div>
+  <div class="c num" id="s1n" style="top:660px;font-size:330px;line-height:1">26/11</div>
+  <div id="strike" style="position:absolute;top:812px;left:150px;height:30px;width:780px;background:#E2574C;border-radius:16px;transform-origin:right center;transform:scaleX(0) rotate(-6deg)"></div>
+  <div class="c" id="s1b" style="top:1120px;font-size:92px;font-weight:900;color:#FFD84D">بس الحقيقة؟</div>
+</div>
+
+<!-- S2: 1/11 -->
+<div class="layer" id="s2">
+  <div class="c" id="s2a" style="top:450px;font-size:76px;font-weight:800">أول امتحان</div>
+  <div class="c num" id="s2n" style="top:600px;font-size:430px;line-height:1;color:#FFD84D">1/11</div>
+  <div class="c" id="s2b" style="top:1150px"><span class="chip" style="font-size:72px;background:#E2574C;color:#fff">يوم الأحد — بعد 3 أيام</span></div>
+</div>
+
+<!-- S3: grade cards -->
+<div class="layer" id="s3">
+  <div class="c" id="s3h" style="top:330px;font-size:78px;font-weight:900">مين بيبلّش أول؟</div>
+  <div class="card" id="c1" style="top:560px"><div class="g">8<small>الثامن</small></div><div class="t"><b>مهمة رياضيات محوسبة</b><span>الأحد 1/11</span></div></div>
+  <div class="card" id="c2" style="top:860px"><div class="g">9<small>التاسع</small></div><div class="t"><b>امتحان لغة عربية</b><span>الأحد 1/11</span></div></div>
+  <div class="card" id="c3" style="top:1160px"><div class="g">7<small>السابع</small></div><div class="t"><b>مهمة رياضيات محوسبة</b><span>الثلاثاء 3/11</span></div></div>
+</div>
+
+<!-- S4: big period counter -->
+<div class="layer" id="s4">
+  <div class="c" id="s4a" style="top:440px;font-size:72px;font-weight:800">والامتحانات الفصلية؟</div>
+  <div class="c num" id="s4n" style="top:640px;font-size:440px;line-height:1;color:#FFD84D">28</div>
+  <div class="c" id="s4u" style="top:1090px;font-size:96px;font-weight:900">يوم وبتبلّش</div>
+  <div class="c" id="s4b" style="top:1260px"><span class="chip" style="font-size:56px">من 26/11 لـ 20/12</span></div>
+</div>
+
+<!-- S5: CTA -->
+<div class="layer" id="s5">
+  <img id="logo" src="logo-white.png" style="position:absolute;left:390px;top:300px;width:300px">
+  <div class="c" id="s5a" style="top:640px;font-size:118px;font-weight:900;line-height:1.15">بلّش اليوم<br><span style="color:#FFD84D">مش ليلة الامتحان</span></div>
+  <div class="c" id="s5b" style="top:1000px;font-size:50px;font-weight:700;opacity:.92;line-height:1.5">دروس تحضير فردي وجماعي<br>للسابع والثامن والتاسع · دبورية</div>
+  <div class="wa" id="wa" style="top:1300px"><small>احجزوا ساعاتكم قبل ما تمتلي</small><b>054-6111668</b></div>
+</div>
+
+</div>
+<div id="flash"></div>
+<canvas id="grain" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eb=x=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const ei=x=>x*x*x;
+function slam(el,t,t0,from=2.2,dur=.28){const k=p(t,t0,t0+dur);const s=from+(1-from)*eo(k);el.style.transform=`scale(${s})`;el.style.opacity=k>0?Math.min(1,k*3):0;}
+function rise(el,t,t0,d=80,dur=.4){const k=eo(p(t,t0,t0+dur));el.style.opacity=k;el.style.transform=`translateY(${(1-k)*d}px)`;}
+function shake(t,t0,amp=26){const k=p(t,t0,t0+.35);if(k<=0||k>=1)return 0;return Math.sin(k*40)*amp*(1-k);}
+function layer(id,t,a,b,f=.18){const el=$(id);let o=Math.min(p(t,a,a+f),1-p(t,b-f,b));el.style.opacity=o;return el;}
+let seed=1;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647}
+const gctx=$('grain').getContext('2d');
+function grain(fi){seed=fi*977+13;const im=gctx.createImageData(540,960);for(let i=0;i<im.data.length;i+=4){const v=rnd()*255;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=255}gctx.putImageData(im,0,0)}
+// times
+const T={s1:0,s2:3.0,s3:6.0,s4:10.0,s5:13.0,end:17.5};
+window.render=function(t,fi){
+  grain(fi);
+  $('grid').style.transform=`translateY(${(t*40)%120}px) rotate(-8deg)`;
+  const beat=Math.pow(1-((t*2)%1),4); // 120 bpm pulse
+  $('glow').style.opacity=.55+.45*beat;
+  // flashes on impacts
+  let fl=0;for(const ti of [3.0,6.0,10.0,13.0]){const k=p(t,ti,ti+.25);if(k>0&&k<1)fl=Math.max(fl,.55*(1-k));}
+  $('flash').style.opacity=fl;
+  // ring progress: whole video as fuse
+  $('arc').style.strokeDashoffset=2325*(1-cl(t/ T.s5));
+  $('ring').style.opacity=t<T.s5?.9:Math.max(0,.9-(t-T.s5)*2);
+  $('tick').style.opacity=t<T.s5?.85:0;
+  // S1
+  const s1=layer('s1',t,-1,T.s2,.12); const sh=shake(t,1.75,30);
+  s1.style.transform=`translateX(${sh}px)`;
+  rise($('s1a'),t,.05);
+  slam($('s1n'),t,.06,1.9,.3);
+  const sk=eo(p(t,1.6,1.85));$('strike').style.transform=`scaleX(${sk}) rotate(-6deg)`;
+  $('s1n').style.color=t>1.75?'rgba(255,255,255,.45)':'#fff';
+  slam($('s1b'),t,2.15,1.6,.22);
+  // S2
+  const s2=layer('s2',t,T.s2,T.s3,.12); s2.style.transform=`translateX(${shake(t,T.s2+.4,34)}px)`;
+  rise($('s2a'),t,T.s2,60,.3);
+  slam($('s2n'),t,T.s2+.4,3,.3);
+  slam($('s2b'),t,T.s2+1.2,1.6,.3);
+  const pul=1+.04*beat*(t>T.s2+1?1:0);$('s2n').style.transform+=` scale(${pul})`;
+  // S3
+  layer('s3',t,T.s3,T.s4,.12);
+  rise($('s3h'),t,T.s3,60,.3);
+  [['c1',T.s3+.5],['c2',T.s3+1.5],['c3',T.s3+2.5]].forEach(([id,t0])=>{const el=$(id);const k=eb(p(t,t0,t0+.45));el.style.opacity=cl(p(t,t0,t0+.15));el.style.transform=`translateX(${(1-k)*-1100}px) rotate(${(1-k)*-6}deg)`;});
+  // S4
+  const s4=layer('s4',t,T.s4,T.s5,.12);
+  rise($('s4a'),t,T.s4,60,.3);
+  const ck=eo(p(t,T.s4+.4,T.s4+1.9));const n=Math.round(ck*28);
+  $('s4n').textContent=n;
+  slam($('s4n'),t,T.s4+.4,1.4,.25);
+  $('s4n').style.transform+=` scale(${1+.05*beat})`;
+  slam($('s4u'),t,T.s4+1.95,1.8,.25);
+  rise($('s4b'),t,T.s4+2.3,60,.35);
+  // S5
+  layer('s5',t,T.s5,99,.12);
+  slam($('logo'),t,T.s5+.1,.4,.45);
+  slam($('s5a'),t,T.s5+.45,1.5,.3);
+  rise($('s5b'),t,T.s5+1.2,50,.4);
+  const wk=eb(p(t,T.s5+1.7,T.s5+2.2));$('wa').style.opacity=cl(p(t,T.s5+1.7,T.s5+1.85));$('wa').style.transform=`translateY(${(1-wk)*300}px) scale(${1+.03*beat*(t>T.s5+2.4?1:0)})`;
+};
+window.render(0,0);
+</script></body></html>
