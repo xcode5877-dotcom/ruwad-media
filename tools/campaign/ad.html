@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:800;src:url(rubik-arabic-800-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:700;src:url(rubik-latin-700-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#120808}
+body{font-family:R,L;color:#fff;position:relative}
+#bgred{position:absolute;inset:0;background:radial-gradient(circle at 50% 55%,#6b2222 0,#2c1010 50%,#100505 100%)}
+#bgteal{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,#2B5E59 0,#163A37 45%,#0B201E 100%);opacity:0}
+#grid{position:absolute;inset:-200px;background-image:linear-gradient(rgba(255,255,255,.05) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.05) 2px,transparent 2px);background-size:120px 120px}
+#glow{position:absolute;width:1400px;height:1400px;left:-160px;top:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,216,77,.28) 0,rgba(255,216,77,0) 60%);opacity:0}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+.layer{position:absolute;inset:0;opacity:0}
+.c{position:absolute;left:0;right:0;text-align:center}
+.y{color:#FFD84D}
+.shadow{text-shadow:0 8px 30px rgba(0,0,0,.6)}
+/* phone */
+#phone{position:absolute;left:220px;top:640px;width:640px;height:1140px;border-radius:84px;background:#05110F;padding:20px;box-shadow:0 50px 110px rgba(0,0,0,.6),0 0 0 5px rgba(255,255,255,.14)}
+#screen{position:relative;width:100%;height:100%;border-radius:66px;overflow:hidden;background:linear-gradient(170deg,#3a2a4a 0%,#1d1626 60%,#0d0a12 100%)}
+#screen2{position:absolute;inset:0;background:linear-gradient(170deg,#2B5E59 0%,#163A37 60%,#0B201E 100%);opacity:0}
+.clock{position:absolute;left:0;right:0;text-align:center;font-family:L;font-weight:700;direction:ltr}
+#notch{position:absolute;left:50%;top:22px;width:170px;height:46px;margin-left:-85px;border-radius:30px;background:#000;z-index:5}
+.n{position:absolute;left:24px;right:24px;height:132px;border-radius:34px;background:rgba(255,255,255,.88);color:#1b1b1f;display:flex;align-items:center;gap:20px;padding:0 24px;direction:rtl;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.n .ic{flex:0 0 76px;height:76px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:44px}
+.n .tx{flex:1;min-width:0}
+.n .tx b{display:block;font-size:31px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.n .tx span{display:block;font-size:28px;font-weight:500;color:#4a4a52;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.n i{font-style:normal;font-size:24px;color:#777;align-self:flex-start;margin-top:26px}
+.g .tx b{color:#163A37}
+#badge{position:absolute;left:150px;top:600px;background:#E2574C;color:#fff;font-family:L;font-weight:900;font-size:64px;border-radius:999px;padding:6px 34px;box-shadow:0 12px 30px rgba(0,0,0,.45);direction:ltr;opacity:0;z-index:6}
+#check{position:absolute;right:150px;top:600px;background:#FFD84D;color:#14332F;font-weight:900;font-size:50px;border-radius:999px;padding:12px 34px;box-shadow:0 12px 30px rgba(0,0,0,.45);opacity:0;z-index:6}
+/* exam scene */
+#big{font-family:R;font-size:250px;font-weight:900;line-height:1}
+.chips{position:absolute;left:0;right:0;display:flex;justify-content:center;gap:24px}
+.chip{background:#FFD84D;color:#14332F;font-weight:900;border-radius:999px;padding:16px 46px;font-size:62px}
+.wa{position:absolute;left:120px;right:120px;background:#fff;color:#22524E;border-radius:999px;padding:26px 0;text-align:center}
+.wa small{display:block;font-size:40px;color:#3d6b66;font-weight:800}
+.wa b{font-family:L;font-size:92px;font-weight:900;direction:ltr;display:block;line-height:1.1}
+#grain{position:absolute;inset:0;opacity:.06;mix-blend-mode:overlay}
+</style></head><body>
+<div id="bgred"></div><div id="bgteal"></div><div id="grid"></div><div id="glow"></div>
+
+<!-- HOOK copy: visible from frame 0 -->
+<div class="layer" id="s1" style="opacity:1">
+  <div class="c shadow" id="h1" style="top:210px;font-size:122px;font-weight:900">ابنك <span class="y">مش كسلان.</span></div>
+  <div class="c shadow" id="h1b" style="top:380px;font-size:64px;font-weight:800;line-height:1.3">هو بيخسر قدّام التلفون… كل ليلة.</div>
+</div>
+<div class="layer" id="s2">
+  <div class="c shadow" id="h2a" style="top:220px;font-size:80px;font-weight:800">نفس التلفون…</div>
+  <div class="c shadow y" id="h2b" style="top:340px;font-size:138px;font-weight:900">صار يدرّسه.</div>
+</div>
+
+<div id="phone"><div id="screen">
+  <div id="notch"></div>
+  <div class="clock" id="clk" style="top:120px;font-size:150px">23:47</div>
+  <div class="clock" style="top:290px;font-family:R;font-size:34px;font-weight:700;opacity:.85">الثلاثاء · وقت الدراسة</div>
+  <div id="nwrap"></div>
+  <div id="screen2">
+    <div class="clock" style="top:120px;font-size:150px">17:30</div>
+    <div class="clock" style="top:290px;font-family:R;font-size:34px;font-weight:700;opacity:.85">الثلاثاء · وقت الدراسة</div>
+    <div id="gwrap"></div>
+  </div>
+</div></div>
+<div id="badge">+47</div>
+<div id="check">✓ 9/10</div>
+
+<!-- EXAM -->
+<div class="layer" id="s3">
+  <div class="c shadow" id="h3a" style="top:430px;font-size:70px;font-weight:800">امتحانات الفصل الأول بتبلّش بعد</div>
+  <div class="c y shadow" id="big" style="top:560px">3 أسابيع</div>
+  <div class="chips" id="chips" style="top:900px"><div class="chip" id="c7">سابع</div><div class="chip" id="c8">ثامن</div><div class="chip" id="c9">تاسع</div></div>
+  <div class="c" id="h3b" style="top:1090px;font-size:56px;font-weight:700;line-height:1.5;opacity:.95">دروس تحضير فردي وجماعي<br><span class="y" style="font-weight:900">+ تدريب يومي على منصة رواد</span></div>
+</div>
+
+<!-- CTA -->
+<div class="layer" id="s4">
+  <img id="logo" src="logo-white.png" style="position:absolute;left:400px;top:260px;width:280px">
+  <div class="c shadow" id="s4a" style="top:600px;font-size:96px;font-weight:900;line-height:1.2">احجزوا ساعات التحضير<br><span class="y">قبل ما تمتلي</span></div>
+  <div class="wa" id="wa" style="top:960px"><small>واتساب</small><b>054-6111668</b></div>
+  <div class="c" id="s4b" style="top:1250px;font-size:50px;font-weight:800;opacity:.92">📍 معهد رُوّاد · دبورية</div>
+</div>
+
+<div id="flash"></div>
+<canvas id="grain" width="540" height="960" style="width:1080px;height:1920px"></canvas>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const eb=x=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+function slam(el,t,t0,from=2.2,dur=.28){const k=p(t,t0,t0+dur);el.style.transform=`scale(${from+(1-from)*eo(k)})`;el.style.opacity=k>0?Math.min(1,k*3):0;}
+function rise(el,t,t0,d=80,dur=.4){const k=eo(p(t,t0,t0+dur));el.style.opacity=k;el.style.transform=`translateY(${(1-k)*d}px)`;}
+function layer(id,t,a,b,f=.15){const el=$(id);el.style.opacity=Math.min(a<0?1:p(t,a,a+f),1-p(t,b-f,b));return el;}
+let seed=1;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647}
+const g=$('grain').getContext('2d');
+function grain(fi){seed=fi*977+13;const im=g.createImageData(540,960);for(let i=0;i<im.data.length;i+=4){const v=rnd()*255;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=255}g.putImageData(im,0,0)}
+
+// distraction notifications (generic, no brands). [time, icon, bg, title, body]
+const BAD=[
+ [-0.6,'▶️','#ff5a5f','فيديو جديد','شوف هاد قبل ما ينحذف 😱'],
+ [-0.3,'💬','#3ecf6e','مجموعة الصف (38)','حدا حلّ الوظيفة؟؟'],
+ [0.0,'🎮','#8f5bff','جولتك جاهزة!','صحابك بستنوك هلّق'],
+ [0.35,'🔥','#ff9a2e','الستريك رح يروح!','ضل 12 دقيقة'],
+ [0.65,'📸','#ff4fa3','حدا علّق على صورتك','😂😂😂'],
+ [0.95,'▶️','#ff5a5f','مقطع جديد','بس دقيقة وحدة…'],
+ [1.2,'💬','#3ecf6e','مجموعة الصف (52)','مين صاحي؟'],
+ [1.45,'🎮','#8f5bff','مكافأة يومية 🎁','افتح هلّق'],
+ [1.7,'🔔','#4aa3ff','لايف بلّش','انضم للبث'],
+ [1.95,'📸','#ff4fa3','3 قصص جديدة','من صحابك'],
+];
+const GOOD=[
+ [3.05,'🎯','#FFD84D','رواد · تحدّي اليوم','10 أسئلة رياضيات · +20 🪙'],
+ [3.55,'🔥','#FFD84D','رواد · 6 أيام ورا بعض','لا تكسر السلسلة!'],
+ [4.05,'📝','#FFD84D','رواد · مهمة من المعلمة','معادلات · صف ثامن'],
+ [4.6,'🏆','#FFD84D','رواد · لوحة الشرف','طلعت للمركز الثالث بصفّك'],
+];
+function mk(wrap,arr,cls){return arr.map(([t,ic,bg,ti,bo])=>{const d=document.createElement('div');d.className='n '+cls;d.innerHTML=`<div class="ic" style="background:${bg}">${ic}</div><div class="tx"><b>${ti}</b><span>${bo}</span></div><i>الآن</i>`;$(wrap).appendChild(d);return [t,d];});}
+const bad=mk('nwrap',BAD,''), good=mk('gwrap',GOOD,'g');
+const TOP=370, STEP=150;
+function stack(list,t,maxShow,clear){
+  // newest on top; older pushed down
+  const shown=list.filter(([ti])=>ti<=t);
+  list.forEach(([ti,d])=>{
+    const idx=shown.length-1-shown.findIndex(x=>x[1]===d);
+    if(ti>t){d.style.opacity=0;return;}
+    const k=eb(p(t,ti,ti+.22));
+    const y=TOP+idx*STEP;
+    const sw=clear?eio(p(t,clear,clear+.35)):0;
+    d.style.opacity=(idx<maxShow?1:0)*Math.min(1,p(t,ti,ti+.08)+ (ti<0?1:0))*(1-sw);
+    d.style.transform=`translateY(${y-(1-k)*120}px) scale(${.85+.15*k}) translateX(${sw*(idx%2?-1:1)*900}px) rotate(${sw*(idx%2?-14:14)}deg)`;
+  });
+}
+const T={s2:2.6,s3:6.0,s4:8.9};
+window.render=function(t,fi){
+  grain(fi);
+  $('grid').style.transform=`translateY(${(t*40)%120}px) rotate(-8deg)`;
+  const beat=Math.pow(1-(((t-T.s2)*2)%1+1)%1,4);
+  $('bgteal').style.opacity=p(t,T.s2,T.s2+.2);
+  $('glow').style.opacity=t<T.s2?0:.5+.45*beat;
+  let fl=0;for(const ti of [T.s2,T.s3,T.s4]){const k=p(t,ti,ti+.22);if(k>0&&k<1)fl=Math.max(fl,.55*(1-k));}
+  $('flash').style.opacity=fl;
+  // phone: present at frame 0, vibrating during hook
+  const ph=$('phone');
+  const buzz=t<T.s2?Math.sin(t*95)*(6+10*p(t,0,2.4)):0;
+  const outK=eio(p(t,T.s3-.35,T.s3));
+  const zoom=t<T.s2?1+.04*p(t,0,2.6):1;
+  ph.style.opacity=1-outK;
+  ph.style.transform=`translateX(${buzz}px) rotate(${buzz*.08}deg) translateY(${outK*900}px) scale(${zoom-.15*outK})`;
+  stack(bad,t,7,2.35);
+  $('clk').style.opacity=1;
+  $('screen2').style.opacity=p(t,T.s2,T.s2+.15);
+  stack(good,t,4,null);
+  // badge counter
+  const bd=$('badge');
+  const cnt=Math.round(12+35*p(t,0,2.3));
+  bd.textContent='+'+cnt;
+  bd.style.opacity=t<T.s2?1:1-p(t,T.s2,T.s2+.1);
+  bd.style.transform=`scale(${1+.12*Math.pow(1-((t*4)%1),3)}) rotate(-6deg)`;
+  const ck=$('check'); const ckk=eb(p(t,5.0,5.4));
+  ck.style.opacity=t<T.s3-.3?cl(p(t,5.0,5.1)):1-p(t,T.s3-.3,T.s3);
+  ck.style.transform=`scale(${.3+.7*ckk}) rotate(6deg)`;
+  // copy
+  layer('s1',t,-1,T.s2,.1);
+  $('h1').style.transform=`scale(${1+.03*Math.sin(t*6)})`;
+  { // line 2 appears at 0.9s
+    const k=eo(p(t,.45,.75)); $('h1b').style.opacity=k; $('h1b').style.transform=`translateY(${(1-k)*40}px)`; }
+  layer('s2',t,T.s2,T.s3,.12); slam($('h2a'),t,T.s2+.05,1.4,.25); slam($('h2b'),t,T.s2+.55,2.2,.3);
+  layer('s3',t,T.s3,T.s4,.12); rise($('h3a'),t,T.s3+.05,50,.3); slam($('big'),t,T.s3+.3,2.4,.3);
+  ['c7','c8','c9'].forEach((id,i)=>{const k=eb(p(t,T.s3+1.0+i*.18,T.s3+1.35+i*.18));const e=$(id);e.style.opacity=cl(p(t,T.s3+1.0+i*.18,T.s3+1.1+i*.18));e.style.transform=`scale(${.3+.7*k})`;});
+  rise($('h3b'),t,T.s3+1.7,50,.4);
+  layer('s4',t,T.s4,99,.12);
+  slam($('logo'),t,T.s4+.05,.4,.4); slam($('s4a'),t,T.s4+.3,1.5,.3);
+  const wk=eb(p(t,T.s4+1.0,T.s4+1.5));$('wa').style.opacity=cl(p(t,T.s4+1.0,T.s4+1.15));$('wa').style.transform=`translateY(${(1-wk)*300}px) scale(${1+.03*Math.sin((t-T.s4)*8)*p(t,T.s4+1.6,T.s4+2)})`;
+  rise($('s4b'),t,T.s4+1.6,40,.4);
+};
+</script></body></html>
