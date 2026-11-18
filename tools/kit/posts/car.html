@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+@font-face{font-family:Z;src:url(lalezar-arabic-400-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:R,L;color:#fff;position:relative;background:#0B201E}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,#2E6862 0,#1A433F 46%,#0A1D1B 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.04) 2px,transparent 2px);background-size:90px 90px}
+.slide{position:absolute;inset:0;display:none}
+.Z{font-family:Z,L;-webkit-text-stroke:4px #0a1a18;paint-order:stroke fill;text-shadow:0 6px 0 #0a1a18}
+.y{color:#FFD84D}.r{color:#FF5A5A}.g{color:#3EE08A}
+.top{position:absolute;top:56px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center}
+.tag{background:#FFD84D;color:#14332F;font-weight:900;font-size:30px;border-radius:999px;padding:10px 30px}
+.num{font-family:L;font-weight:900;font-size:34px;color:#9fd0c9;direction:ltr}
+.foot{position:absolute;bottom:50px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;color:#9fd0c9;font-weight:700;font-size:28px}
+.foot img{height:56px}
+.h{position:absolute;left:60px;right:60px;top:150px;text-align:center;font-size:96px;line-height:1.15}
+.sub{position:absolute;left:80px;right:80px;text-align:center;font-weight:700;font-size:40px;line-height:1.45;color:#e6f4f1}
+.card{position:absolute;left:70px;right:70px;background:rgba(10,30,28,.82);border:5px solid #3EE08A;border-radius:36px;padding:30px 40px;font-weight:700;font-size:40px;line-height:1.45}
+.card b{color:#FFD84D;font-weight:900}
+.swipe{position:absolute;bottom:130px;left:0;right:0;text-align:center;font-weight:900;font-size:36px;color:#FFD84D}
+/* price tag */
+.ptag{position:absolute;background:#FBFAF4;color:#14332F;border-radius:30px 90px 90px 30px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.hole{position:absolute;width:44px;height:44px;border-radius:50%;background:#1A433F;border:8px solid #d9d4c3}
+.big{font-family:L;font-weight:900;direction:ltr}
+.strike{position:relative;display:inline-block}
+.strike:after{content:"";position:absolute;left:-10px;right:-10px;top:50%;height:16px;background:#E53935;border-radius:8px;transform:rotate(-12deg)}
+/* popcorn */
+.pc{position:absolute;bottom:0;display:flex;flex-direction:column;align-items:center}
+.cup{background:repeating-linear-gradient(90deg,#E53935 0 34px,#FBFAF4 34px 68px);clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);border-radius:0 0 18px 18px}
+.corn{border-radius:50% 50% 10px 10px;background:radial-gradient(circle at 30% 40%,#fff6cf 0 18%,transparent 19%),radial-gradient(circle at 70% 30%,#fff2b8 0 20%,transparent 21%),radial-gradient(circle at 50% 70%,#ffeaa0 0 22%,transparent 23%),#FFE48A}
+.price{margin-top:18px;font-family:L;font-weight:900;font-size:64px;direction:ltr;background:#fff;color:#14332F;border-radius:20px;padding:4px 26px}
+.lbl{margin-top:10px;font-weight:900;font-size:36px}
+/* halt */
+.oct{position:absolute;width:250px;height:250px;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);display:flex;flex-direction:column;align-items:center;justify-content:center;background:#E53935}
+.oct .L{font-family:L;font-weight:900;font-size:120px;line-height:1}
+.oct .w{font-weight:900;font-size:40px;margin-top:4px}
+</style></head><body>
+<div class="bg"></div><div class="grid"></div>
+
+<!-- 1 cover -->
+<div class="slide" id="s1">
+ <div class="top"><span class="tag">ثقافة مالية · الصف التاسع</span><span class="num">1/7</span></div>
+ <div class="h Z" style="top:190px">دماغك <span class="y">بيضحك عليك</span><br>وإنت بتشتري!</div>
+ <div class="ptag" style="left:290px;top:560px;width:500px;height:330px;transform:rotate(-8deg)">
+  <div class="hole" style="left:34px;top:143px"></div>
+  <svg width="500" height="330" viewBox="0 0 500 330" style="position:absolute;inset:0">
+   <g transform="translate(290,140)">
+    <ellipse cx="-70" cy="0" rx="46" ry="54" fill="#fff" stroke="#0d1715" stroke-width="8"/><circle cx="-56" cy="8" r="20" fill="#0d1715"/>
+    <ellipse cx="70" cy="0" rx="46" ry="54" fill="#fff" stroke="#0d1715" stroke-width="8"/><circle cx="84" cy="8" r="20" fill="#0d1715"/>
+    <path d="M-120 -70 L-30 -55" stroke="#0d1715" stroke-width="13" stroke-linecap="round"/>
+    <path d="M30 -60 L120 -80" stroke="#0d1715" stroke-width="13" stroke-linecap="round"/>
+    <path d="M-60 95 Q20 130 90 70" stroke="#0d1715" stroke-width="12" fill="none" stroke-linecap="round"/>
+   </g>
+  </svg>
+ </div>
+ <div class="sub" style="top:960px"><b style="color:#FFD84D">4 خدع</b> بيلعبها عليك المخ… <b style="color:#3EE08A">وسلاح واحد</b> ضدّهم.<br>وكلهم رح يطلعولك بامتحان الثقافة المالية.</div>
+ <div class="swipe">← اسحب</div>
+ <div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div>
+</div>
+
+<!-- 2 anchor -->
+<div class="slide" id="s2">
+ <div class="top"><span class="tag">الخدعة 1 · المرساة</span><span class="num">2/7</span></div>
+ <div class="h Z">كان 999…<br><span class="y">اليوم 499!</span></div>
+ <div class="ptag" style="left:210px;top:470px;width:660px;height:300px;transform:rotate(4deg)">
+  <div class="hole" style="left:34px;top:128px"></div>
+  <div style="position:absolute;right:60px;top:40px;text-align:center">
+   <div class="big strike" style="font-size:90px;color:#8a9a97">999 ₪</div>
+   <div class="big" style="font-size:150px;color:#E53935;line-height:1.05">499 ₪</div>
+  </div>
+ </div>
+ <div class="card" style="top:850px">أول رقم بتشوفه <b>(999)</b> بيعلق براسك، فبتحس إنّ الـ499 صفقة.<br>بس السؤال الصح: <b>كم بدفع؟</b> مش كم «وفّرت».</div>
+ <div class="foot"><img src="logo-white.png"><span>ثقافة مالية · التاسع</span></div>
+</div>
+
+<!-- 3 decoy -->
+<div class="slide" id="s3">
+ <div class="top"><span class="tag">الخدعة 2 · الطُّعم</span><span class="num">3/7</span></div>
+ <div class="h Z">ليش الفشار <span class="y">الوسط</span><br>موجود أصلًا؟</div>
+ <div style="position:absolute;left:90px;right:90px;top:430px;height:430px">
+  <div class="pc" style="right:20px"><div class="corn" style="width:150px;height:60px"></div><div class="cup" style="width:150px;height:170px"></div><div class="price">18</div><div class="lbl">صغير</div></div>
+  <div class="pc" style="right:330px;opacity:.55"><div class="corn" style="width:200px;height:75px"></div><div class="cup" style="width:200px;height:220px"></div><div class="price" style="background:#FFD84D">28</div><div class="lbl y">وسط = الطُّعم</div></div>
+  <div class="pc" style="left:0"><div class="corn" style="width:240px;height:90px"></div><div class="cup" style="width:240px;height:270px"></div><div class="price">30</div><div class="lbl">كبير</div></div>
+ </div>
+ <div class="card" style="top:930px">الوسط مش معمول لتشتريه. معمول ليخلّي الكبير يبيّن <b>«تقريبًا ببلاش»</b> (بس 2 ₪ زيادة).<br>الحل: <b>شيل الخيار الغريب</b> وقرّر بين الباقيين.</div>
+ <div class="foot"><img src="logo-white.png"><span>ثقافة مالية · التاسع</span></div>
+</div>
+
+<!-- 4 present bias -->
+<div class="slide" id="s4">
+ <div class="top"><span class="tag">الخدعة 3 · تفضيل الحاضر</span><span class="num">4/7</span></div>
+ <div class="h Z">برغر <span class="y">هلّق</span>…<br>ولا تلفون <span class="g">بعدين؟</span></div>
+ <div style="position:absolute;left:70px;right:70px;top:460px;display:flex;gap:30px">
+  <div style="flex:1;background:rgba(229,57,53,.18);border:5px solid #FF5A5A;border-radius:32px;padding:30px;text-align:center">
+   <div style="font-weight:900;font-size:40px">بيوفّر 50 ₪ بالشهر</div>
+   <div class="big r" style="font-size:130px;line-height:1.1">24</div>
+   <div style="font-weight:900;font-size:40px">شهر للتلفون</div>
+  </div>
+  <div style="flex:1;background:rgba(62,224,138,.15);border:5px solid #3EE08A;border-radius:32px;padding:30px;text-align:center">
+   <div style="font-weight:900;font-size:40px">بيوفّر 100 ₪ بالشهر</div>
+   <div class="big g" style="font-size:130px;line-height:1.1">12</div>
+   <div style="font-weight:900;font-size:40px">شهر للتلفون</div>
+  </div>
+ </div>
+ <div class="card" style="top:880px">جواد بدّه تلفون بـ<b>1200 ₪</b>. كل برغر بيبعّده عن هدفه.<br>ليش صعب نوقف؟ لأنّ المخ بيشوف <b>«إنت المستقبلي»</b> كأنه شخص غريب.</div>
+ <div class="foot"><img src="logo-white.png"><span>ثقافة مالية · التاسع</span></div>
+</div>
+
+<!-- 5 optimism -->
+<div class="slide" id="s5">
+ <div class="top"><span class="tag">الخدعة 4 · التفاؤل المفرط</span><span class="num">5/7</span></div>
+ <div class="h Z">أكيد رح أروح<br>عالجيم <span class="y">كل يوم!</span></div>
+ <div style="position:absolute;left:70px;right:70px;top:470px;display:flex;gap:30px;text-align:center">
+  <div style="flex:1;background:rgba(10,30,28,.82);border:5px solid #9fd0c9;border-radius:32px;padding:28px">
+   <div style="font-weight:900;font-size:38px">دخول لمرة</div><div class="big" style="font-size:110px">50 ₪</div></div>
+  <div style="flex:1;background:rgba(10,30,28,.82);border:5px solid #FFD84D;border-radius:32px;padding:28px">
+   <div style="font-weight:900;font-size:38px">اشتراك أسبوعي</div><div class="big y" style="font-size:110px">200 ₪</div></div>
+ </div>
+ <div class="card" style="top:830px">الاشتراك بيوفّر بس إذا رحت <b>أكثر من 4 مرات</b> بالأسبوع، لأنّ 4 دخولات بـ200 ₪ أصلًا.<br>بالواقع؟ أغلب الناس بيروحوا مرة أو مرتين.<br>اسأل حالك: <b>«كم مرة عملت هيك فعلًا؟»</b></div>
+ <div class="foot"><img src="logo-white.png"><span>ثقافة مالية · التاسع</span></div>
+</div>
+
+<!-- 6 HALT -->
+<div class="slide" id="s6">
+ <div class="top"><span class="tag">السلاح · HALT</span><span class="num">6/7</span></div>
+ <div class="h Z">قبل ما تدفع…<br><span class="r">وقّف!</span></div>
+ <div style="position:absolute;left:0;right:0;top:450px;height:560px">
+  <div class="oct" style="left:290px;top:0"><span class="L">H</span><span class="w">جوعان</span></div>
+  <div class="oct" style="left:540px;top:0;background:#FF8A3D"><span class="L">A</span><span class="w">معصّب</span></div>
+  <div class="oct" style="left:290px;top:270px;background:#7A5CFF"><span class="L">L</span><span class="w">وحيد</span></div>
+  <div class="oct" style="left:540px;top:270px;background:#2B8CFF"><span class="L">T</span><span class="w">تعبان</span></div>
+ </div>
+ <div class="card" style="top:1010px;padding:24px 40px">إذا في حرف واحد منهم: <b>أجّل الشراء لبكرا.</b><br>بكرا لسا بدّك ياه وبتقدر؟ اشتريه.</div>
+ <div class="foot" style="bottom:36px"><img src="logo-white.png"><span>ثقافة مالية · التاسع</span></div>
+</div>
+
+<!-- 7 CTA -->
+<div class="slide" id="s7">
+ <div class="top"><span class="tag">لطلاب التاسع بدبورية</span><span class="num">7/7</span></div>
+ <div style="position:absolute;left:0;right:0;top:170px;text-align:center"><img src="logo-white.png" style="width:330px"></div>
+ <div class="h Z" style="top:430px;font-size:84px">امتحان الثقافة المالية<br><span class="y">قرّب؟</span></div>
+ <div class="card" style="top:690px">كل المادة عالمنصة تبعت رواد: <b>شرح بسيط، أمثلة، وأسئلة بتتغيّر كل مرة</b>.<br>العاطفة والعقل · التحيّزات · HALT · الناتج المحلي.</div>
+ <div style="position:absolute;left:0;right:0;top:1030px;text-align:center">
+  <span style="display:inline-block;background:#25D366;border-radius:999px;padding:18px 54px;font-family:L;font-weight:900;font-size:76px;direction:ltr;box-shadow:0 14px 40px rgba(0,0,0,.35)">0546111668</span>
+  <div style="margin-top:18px;font-weight:900;font-size:38px;color:#FFD84D">ابعتولنا «امتحان» عالواتساب</div>
+ </div>
+</div>
+
+<script>
+const n=new URLSearchParams(location.search).get('s')||'1';
+document.getElementById('s'+n).style.display='block';
+</script>
+</body></html>

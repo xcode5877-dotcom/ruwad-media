@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+@font-face{font-family:Z;src:url(lalezar-arabic-400-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:R,L;color:#fff;position:relative;background:#0B201E}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,#2E6862 0,#1A433F 46%,#0A1D1B 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.04) 2px,transparent 2px);background-size:90px 90px}
+.slide{position:absolute;inset:0;display:none}
+.Z{font-family:Z,L;-webkit-text-stroke:4px #0a1a18;paint-order:stroke fill;text-shadow:0 6px 0 #0a1a18}
+.y{color:#FFD84D}.r{color:#FF5A5A}.g{color:#3EE08A}
+.top{position:absolute;top:56px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center}
+.tag{background:#FFD84D;color:#14332F;font-weight:900;font-size:30px;border-radius:999px;padding:10px 30px}
+.num{font-family:L;font-weight:900;font-size:34px;color:#9fd0c9;direction:ltr}
+.foot{position:absolute;bottom:50px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;color:#9fd0c9;font-weight:700;font-size:28px}
+.foot img{height:56px}
+.h{position:absolute;left:60px;right:60px;top:150px;text-align:center;font-size:96px;line-height:1.15}
+.sub{position:absolute;left:80px;right:80px;text-align:center;font-weight:700;font-size:40px;line-height:1.45;color:#e6f4f1}
+.card{position:absolute;left:70px;right:70px;background:rgba(10,30,28,.82);border:5px solid #3EE08A;border-radius:36px;padding:30px 40px;font-weight:700;font-size:40px;line-height:1.45}
+.card b{color:#FFD84D;font-weight:900}
+.swipe{position:absolute;bottom:130px;left:0;right:0;text-align:center;font-weight:900;font-size:36px;color:#FFD84D}
+/* price tag */
+.ptag{position:absolute;background:#FBFAF4;color:#14332F;border-radius:30px 90px 90px 30px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.hole{position:absolute;width:44px;height:44px;border-radius:50%;background:#1A433F;border:8px solid #d9d4c3}
+.big{font-family:L;font-weight:900;direction:ltr}
+.strike{position:relative;display:inline-block}
+.strike:after{content:"";position:absolute;left:-10px;right:-10px;top:50%;height:16px;background:#E53935;border-radius:8px;transform:rotate(-12deg)}
+/* popcorn */
+.pc{position:absolute;bottom:0;display:flex;flex-direction:column;align-items:center}
+.cup{background:repeating-linear-gradient(90deg,#E53935 0 34px,#FBFAF4 34px 68px);clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);border-radius:0 0 18px 18px}
+.corn{border-radius:50% 50% 10px 10px;background:radial-gradient(circle at 30% 40%,#fff6cf 0 18%,transparent 19%),radial-gradient(circle at 70% 30%,#fff2b8 0 20%,transparent 21%),radial-gradient(circle at 50% 70%,#ffeaa0 0 22%,transparent 23%),#FFE48A}
+.price{margin-top:18px;font-family:L;font-weight:900;font-size:64px;direction:ltr;background:#fff;color:#14332F;border-radius:20px;padding:4px 26px}
+.lbl{margin-top:10px;font-weight:900;font-size:36px}
+/* halt */
+.oct{position:absolute;width:250px;height:250px;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);display:flex;flex-direction:column;align-items:center;justify-content:center;background:#E53935}
+.oct .L{font-family:L;font-weight:900;font-size:120px;line-height:1}
+.oct .w{font-weight:900;font-size:40px;margin-top:4px}
+.phone{position:absolute;width:360px;height:640px;border-radius:56px;background:#0d1715;border:14px solid #22302e;box-shadow:0 30px 70px rgba(0,0,0,.5);overflow:hidden}
+.scr{position:absolute;inset:0;background:#F4F7F6;color:#14332F;padding:40px 22px;font-weight:700}
+.q{background:#fff;border-radius:18px;padding:14px 16px;margin-bottom:12px;font-size:22px;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.chip{display:inline-block;border-radius:999px;padding:4px 14px;font-size:18px;font-weight:900}
+.row{display:flex;justify-content:space-between;align-items:center}
+.step{position:absolute;left:70px;right:70px;top:140px;display:flex;align-items:center;gap:26px}
+.step .n{width:120px;height:120px;border-radius:50%;background:#FFD84D;color:#14332F;font-family:L;font-weight:900;font-size:70px;display:flex;align-items:center;justify-content:center;flex:none}
+.step .t{font-size:78px;line-height:1.1}
+.ltr{direction:ltr;unicode-bidi:isolate;font-family:L}
+</style></head><body><div class="bg"></div><div class="grid"></div><div class="slide" id="s1"><div class="top"><span class="tag">موسم الامتحانات</span><span class="num">1/7</span></div>
+<div class="h Z" style="top:200px;font-size:104px">ابنك عنده امتحان…<br><span class="y">شو بيصير برواد؟</span></div>
+<div class="sub" style="top:560px">مش دروس زيادة وبس.<br><b style="color:#3EE08A">5 خطوات</b> من أول يوم لحد ورقة الامتحان.</div>
+<div class="phone" style="left:360px;top:760px;height:420px;transform:rotate(-6deg)"><div class="scr">
+<div class="row" style="margin-bottom:16px"><span class="chip" style="background:#FFD84D">خطة امتحان</span><span class="ltr" style="font-size:20px">7 days</span></div>
+<div class="q">✓ تشخيص</div><div class="q">✓ خطة</div><div class="q" style="opacity:.6">تدريب يومي…</div></div></div>
+<div class="swipe" style="bottom:110px">← اسحب</div><div class="foot"><img src="logo-white.png"><span>تحضير للامتحانات · رواد</span></div></div><div class="slide" id="s2"><div class="step"><div class="n">1</div><div class="t Z">منفحص <span class="y">وين الضعف</span></div></div>
+<div class="card" style="top:400px">قبل ما نبلّش، الطالب بيحل مهمة تشخيص على المنصة. منعرف <b>بالزبط</b> أي موضوع قوي فيه وأي موضوع بدّه شغل.</div>
+<div style="position:absolute;left:120px;right:120px;top:720px">
+ <div class="row" style="font-weight:900;font-size:38px;margin-bottom:14px"><span>القوى والتأثير المتبادل</span><span class="g">قوي</span></div><div style="height:28px;border-radius:14px;background:#0d2a27"><div style="width:85%;height:100%;border-radius:14px;background:#3EE08A"></div></div>
+ <div class="row" style="font-weight:900;font-size:38px;margin:36px 0 14px"><span>المحصّلة المتعامدة</span><span class="r">بدّه تدريب</span></div><div style="height:28px;border-radius:14px;background:#0d2a27"><div style="width:35%;height:100%;border-radius:14px;background:#FF5A5A"></div></div>
+ <div class="row" style="font-weight:900;font-size:38px;margin:36px 0 14px"><span>قانون نيوتن الثالث</span><span class="y">متوسط</span></div><div style="height:28px;border-radius:14px;background:#0d2a27"><div style="width:60%;height:100%;border-radius:14px;background:#FFD84D"></div></div>
+</div>
+<div class="sub" style="top:1150px;font-size:30px;color:#9fd0c9">(مثال توضيحي)</div><div class="foot"><img src="logo-white.png"><span>تحضير للامتحانات · رواد</span></div></div><div class="slide" id="s3"><div class="step"><div class="n">2</div><div class="t Z">خطة <span class="y">على قدّ الوقت</span></div></div>
+<div class="card" style="top:400px">المعلم بيبني خطة حسب <b>مادة الامتحان</b> و<b>الأيام اللي ضايلة</b>: شو منراجع كل يوم، وشو أول إشي.</div>
+<div style="position:absolute;left:90px;right:90px;top:720px;display:flex;gap:18px">
+ <div style="flex:1;background:rgba(10,30,28,.85);border:4px solid #FF5A5A;border-radius:26px;padding:22px;text-align:center"><div class="ltr" style="font-size:44px">1–2</div><div style="font-weight:900;font-size:32px;margin-top:8px">الأضعف أول</div></div>
+ <div style="flex:1;background:rgba(10,30,28,.85);border:4px solid #FFD84D;border-radius:26px;padding:22px;text-align:center"><div class="ltr" style="font-size:44px">3–5</div><div style="font-weight:900;font-size:32px;margin-top:8px">تدريب يومي</div></div>
+ <div style="flex:1;background:rgba(10,30,28,.85);border:4px solid #3EE08A;border-radius:26px;padding:22px;text-align:center"><div class="ltr" style="font-size:44px">6–7</div><div style="font-weight:900;font-size:32px;margin-top:8px">امتحان تجريبي</div></div>
+</div><div class="foot"><img src="logo-white.png"><span>تحضير للامتحانات · رواد</span></div></div><div class="slide" id="s4"><div class="step"><div class="n">3</div><div class="t Z">أسئلة <span class="y">ما بتنحفظ</span></div></div>
+<div class="card" style="top:400px;left:470px;right:60px;font-size:36px">كل مرة بيحل، المنصة بتطلّعله <b>أسئلة جديدة</b> بنفس المستوى أو أصعب. ما في نقل، وما في حفظ أجوبة. لازم يفهم.</div>
+<div class="phone" style="left:70px;top:400px"><div class="scr">
+<div class="row" style="margin-bottom:16px"><span class="chip" style="background:#3EE08A">امتحان تجريبي</span><span class="ltr" style="font-size:20px">12/25</span></div>
+<div class="q">سيارة سرعتها <span class="ltr">90 km/h</span>. كم سرعتها بالـ <span class="ltr">m/s</span>؟</div>
+<div class="q" style="border:3px solid #3EE08A"><span class="ltr">25 m/s</span></div><div class="q"><span class="ltr">324 m/s</span></div><div class="q"><span class="ltr">9 m/s</span></div>
+<div style="text-align:center;font-size:20px;color:#6b7f7c;margin-top:16px">المرة الجاية: سؤال غير</div></div></div><div class="foot"><img src="logo-white.png"><span>تحضير للامتحانات · رواد</span></div></div><div class="slide" id="s5"><div class="step"><div class="n">4</div><div class="t Z">كل غلطة <span class="y">إلها تفسير</span></div></div>
+<div class="card" style="top:400px">بعد كل مهمة، المعلم بيشوف <b>تقرير أخطاء</b>: كل سؤال غلط فيه الطالب، شو جاوب، وشو الصح، وأكثر المواضيع اللي صعبة على المجموعة.</div>
+<div style="position:absolute;left:110px;right:110px;top:760px;background:#F4F7F6;color:#14332F;border-radius:30px;padding:26px 30px;box-shadow:0 20px 50px rgba(0,0,0,.4)">
+ <div class="row" style="font-weight:900;font-size:32px;border-bottom:3px solid #dfe7e5;padding-bottom:12px"><span>السؤال</span><span>جاوب</span><span>الصح</span></div>
+ <div class="row" style="font-size:30px;padding:14px 0;border-bottom:2px solid #eef2f1"><span>تحويل السرعة</span><span class="ltr" style="color:#E53935">259.2</span><span class="ltr" style="color:#1FAF5A">20</span></div>
+ <div class="row" style="font-size:30px;padding:14px 0"><span>المحصّلة</span><span class="ltr" style="color:#E53935">17 N</span><span class="ltr" style="color:#1FAF5A">13 N</span></div>
+</div>
+<div class="sub" style="top:1150px;font-size:30px;color:#9fd0c9">(مثال توضيحي)</div><div class="foot"><img src="logo-white.png"><span>تحضير للامتحانات · رواد</span></div></div><div class="slide" id="s6"><div class="step"><div class="n">5</div><div class="t Z">وإنتو <span class="y">بتشوفوا كل إشي</span></div></div>
+<div class="card" style="top:400px">ببوابة الأهل بتشوفوا <b>المهام، التقدّم، وملاحظات المعلم</b> كل يوم. مش رح تستنّوا العلامة لتعرفوا وين ابنكم.</div>
+<div class="phone" style="left:360px;top:690px;height:500px"><div class="scr">
+<div style="font-weight:900;font-size:26px;margin-bottom:14px">بوابة الأهل</div>
+<div class="q row"><span>مهام هالأسبوع</span><span class="chip" style="background:#3EE08A">4/5</span></div>
+<div class="q row"><span>التقدّم بالقوى</span><span class="chip ltr" style="background:#FFD84D">+20%</span></div>
+<div class="q">ملاحظة المعلم: ركّزنا اليوم على المحصّلة</div></div></div><div class="foot"><img src="logo-white.png"><span>تحضير للامتحانات · رواد</span></div></div><div class="slide" id="s7"><div class="top"><span class="tag">دبورية بتتحضّر للامتحانات</span><span class="num">7/7</span></div>
+<div style="position:absolute;left:0;right:0;top:170px;text-align:center"><img src="logo-white.png" style="width:320px"></div>
+<div class="h Z" style="top:420px;font-size:88px">تحضير للامتحانات<br><span class="y">بطريقة غير</span></div>
+<div class="card" style="top:690px">لكل الصفوف · فردي أو جماعي · بالحجز المسبق<br><b>تشخيص · خطة · أسئلة جديدة كل مرة · متابعة يومية</b></div>
+<div style="position:absolute;left:0;right:0;top:1030px;text-align:center"><span style="display:inline-block;background:#25D366;border-radius:999px;padding:18px 54px;font-family:L;font-weight:900;font-size:76px;direction:ltr">0546111668</span>
+<div style="margin-top:18px;font-weight:900;font-size:38px;color:#FFD84D">ابعتولنا «امتحان» عالواتساب</div></div></div><script>const n=new URLSearchParams(location.search).get('s')||'1';document.getElementById('s'+n).style.display='block';</script></body></html>

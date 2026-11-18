@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+@font-face{font-family:Z;src:url(lalezar-arabic-400-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0B201E}
+body{font-family:R,L;color:#fff;position:relative}
+#world{position:absolute;inset:0}
+#bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,#6B3A2A 0,#40221A 42%,#160B08 100%)}
+#bgred{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,#6b2a2a 0,#331515 48%,#120707 100%);opacity:0}
+#bgsad{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,#33406b 0,#1a2140 48%,#0a0d1c 100%);opacity:0}
+#rays{position:absolute;left:540px;top:880px;width:0;height:0}
+#rays i{position:absolute;left:-30px;top:-1500px;width:60px;height:1500px;transform-origin:30px 1500px;background:linear-gradient(to top,rgba(255,216,77,.10),rgba(255,216,77,0))}
+#grid{position:absolute;inset:-240px;background-image:linear-gradient(rgba(255,255,255,.045) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.045) 2px,transparent 2px);background-size:120px 120px}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#vig{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,0,0,0) 55%,rgba(0,0,0,.55) 100%)}
+#char{position:absolute;left:140px;top:380px;width:800px;height:1000px;transform-origin:400px 900px}
+.chip{position:absolute;left:0;right:0;text-align:center;top:120px}
+.chip span{display:inline-block;background:#FFD84D;color:#14332F;font-weight:900;font-size:40px;border-radius:999px;padding:14px 46px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.cap{position:absolute;left:60px;right:60px;top:1450px;text-align:center;font-family:Z;font-size:92px;line-height:1.25;color:#fff;opacity:0;
+ text-shadow:0 6px 0 #0a1a18,0 0 30px rgba(0,0,0,.6);-webkit-text-stroke:3px #0a1a18;paint-order:stroke fill}
+.cap b{color:#FFD84D;font-weight:400}
+.cap.big{font-size:130px;top:1380px;color:#FF5A5A}
+.x{position:absolute;z-index:5;opacity:0;font-family:Z;font-size:50px;color:#fff;background:#B23A2A;border:4px solid #FFD84D;border-radius:16px;padding:4px 24px;box-shadow:0 0 30px rgba(178,58,42,.6);white-space:nowrap}
+.knock{position:absolute;font-family:Z;font-size:150px;color:#FFD84D;opacity:0;-webkit-text-stroke:5px #1a0f00;paint-order:stroke fill;text-shadow:0 8px 0 #1a0f00}
+#badge{position:absolute;right:60px;top:110px;display:flex;align-items:center;gap:22px;background:#22524E;border:4px solid #FFD84D;border-radius:999px;padding:14px 40px 14px 18px;opacity:0;box-shadow:0 0 60px rgba(255,216,77,.45),0 14px 40px rgba(0,0,0,.4)}
+#badge .lg{width:110px;height:110px;border-radius:50%;background:#163A37;display:flex;align-items:center;justify-content:center}
+#badge img{width:96px}
+#badge span{font-family:Z;font-size:70px;color:#fff}
+.tag{position:absolute;left:0;right:0;text-align:center;opacity:0}
+.tag span{display:inline-flex;align-items:center;gap:18px;background:rgba(10,30,28,.88);border:4px solid #3EE08A;color:#fff;font-weight:900;font-size:46px;border-radius:999px;padding:16px 42px}
+.tag em{font-style:normal;display:inline-flex;width:52px;height:52px;border-radius:50%;background:#3EE08A;color:#0a1d1b;align-items:center;justify-content:center;font-size:38px;font-family:L}
+#end{position:absolute;inset:0;opacity:0;background:radial-gradient(circle at 50% 38%,#2E6862 0,#1A433F 45%,#0A1D1B 100%)}
+#end .logo{position:absolute;left:0;right:0;top:300px;text-align:center}
+#end .logo img{width:520px}
+#end .line{position:absolute;left:0;right:0;text-align:center}
+#tag1{top:780px;font-family:Z;font-size:150px;color:#FFD84D;-webkit-text-stroke:4px #0a1a18;paint-order:stroke fill;text-shadow:0 8px 0 #0a1a18}
+#tag2{top:1010px}
+#tag2 span{display:inline-block;background:#fff;color:#14332F;font-weight:900;font-size:54px;border-radius:999px;padding:18px 50px}
+#tag3{top:1160px;font-size:44px;font-weight:700;color:#cfe9e5}
+#wa{top:1290px}
+#wa span{display:inline-flex;align-items:center;gap:26px;background:#25D366;color:#fff;font-family:L;font-weight:900;font-size:80px;border-radius:999px;padding:18px 54px 18px 30px;direction:ltr;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+#wa i{display:inline-block;width:84px;height:84px;border-radius:50%;background:#fff;position:relative}
+#wa i:before{content:"";position:absolute;left:20px;top:20px;width:44px;height:44px;border-radius:50%;border:7px solid #25D366;box-sizing:border-box}
+#wa i:after{content:"";position:absolute;left:14px;top:56px;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:16px solid #25D366;transform:rotate(40deg)}
+#place{top:1440px;font-weight:900;font-size:46px;color:#FFD84D}
+#peek{position:absolute;left:640px;top:1560px;width:400px;height:500px}
+</style></head><body>
+<div id="world">
+ <div id="bg"></div><div id="bgred"></div><div id="bgsad"></div>
+ <div id="rays"></div>
+ <div id="grid"></div>
+ <div class="x" id="x0" style="left:40px;top:430px">الإعراب</div>
+ <div class="x" id="x1" style="left:640px;top:520px">كانَ وأخواتُها</div>
+ <div class="x" id="x2" style="left:30px;top:1080px">الممنوع من الصرف</div>
+ <div class="x" id="x3" style="left:620px;top:1160px">إنَّ وأخواتُها</div>
+ <div class="x" id="x4" style="left:360px;top:250px">المفعول المطلق</div>
+
+ <div id="char">
+ <svg width="800" height="1000" viewBox="-400 -500 800 1000">
+  <defs>
+   <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#000" flood-opacity=".45"/></filter>
+  </defs>
+  <!-- legs -->
+  <g stroke="#0d1715" stroke-width="16" stroke-linecap="round" fill="none">
+   <path id="legL" d="M-110 400 L-120 470"/><path id="legR" d="M110 400 L120 470"/>
+  </g>
+  <ellipse id="shoeL" cx="-140" cy="478" rx="52" ry="22" fill="#0d1715"/>
+  <ellipse id="shoeR" cx="140" cy="478" rx="52" ry="22" fill="#0d1715"/>
+  <!-- left arm (screen left) -->
+  <path id="armL" d="M-300 60 Q-360 90 -400 120" stroke="#0d1715" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <circle id="handL" cx="-400" cy="120" r="22" fill="#fff" stroke="#0d1715" stroke-width="8"/>
+  <!-- paper -->
+  <g filter="url(#sh)">
+   <path d="M-300 -410 L230 -410 L300 -340 L300 410 L-300 410 Z" fill="#FBFAF4"/>
+   <path d="M230 -410 L230 -340 L300 -340 Z" fill="#DEDACB"/>
+  </g>
+  <g fill="#C9D6D4"><rect x="-250" y="-260" width="500" height="5"/></g>
+  <text x="255" y="-330" text-anchor="start" font-family="R" font-weight="900" font-size="40" fill="#22524E" direction="rtl">امتحان اللغة العربيّة</text>
+  <text x="255" y="-282" text-anchor="start" font-family="R" font-weight="700" font-size="32" fill="#6b7f7c" direction="rtl">الصف السابع · الاسم: ............</text>
+  <!-- grade circle -->
+  <g id="grade" transform="translate(-205,-318)">
+   <circle r="62" fill="none" stroke="#E53935" stroke-width="7" id="gradeRing"/>
+   <text id="gradeQ" y="26" text-anchor="middle" font-family="L" font-weight="900" font-size="80" fill="#E53935">?</text>
+   <text id="gradeOK" y="20" text-anchor="middle" font-family="L" font-weight="900" font-size="50" fill="#1FAF5A" opacity="0">ممتاز</text>
+  </g>
+  <!-- eyebrows -->
+  <g stroke="#0d1715" stroke-width="16" stroke-linecap="round">
+   <line id="browL" x1="-160" y1="0" x2="-60" y2="0"/>
+   <line id="browR" x1="60" y1="0" x2="160" y2="0"/>
+  </g>
+  <!-- eyes -->
+  <g id="eyeL" transform="translate(-110,-120)">
+   <ellipse id="ewL" rx="64" ry="74" fill="#fff" stroke="#0d1715" stroke-width="9"/>
+   <circle id="puL" r="28" fill="#0d1715"/><circle id="glL" r="9" fill="#fff"/>
+   <rect id="lidL" x="-70" y="-80" width="140" height="0" fill="#FBFAF4"/>
+  </g>
+  <g id="eyeR" transform="translate(110,-120)">
+   <ellipse id="ewR" rx="64" ry="74" fill="#fff" stroke="#0d1715" stroke-width="9"/>
+   <circle id="puR" r="28" fill="#0d1715"/><circle id="glR" r="9" fill="#fff"/>
+   <rect id="lidR" x="-70" y="-80" width="140" height="0" fill="#FBFAF4"/>
+  </g>
+  <!-- blush -->
+  <ellipse id="blL" cx="-200" cy="-30" rx="40" ry="20" fill="#FF8A80" opacity=".0"/>
+  <ellipse id="blR" cx="200" cy="-30" rx="40" ry="20" fill="#FF8A80" opacity=".0"/>
+  <!-- mouths -->
+  <g transform="translate(0,10)" stroke="#0d1715" stroke-width="13" stroke-linecap="round" fill="none">
+   <path id="mSmile" d="M-80 -5 Q0 60 80 -5"/>
+   <path id="mSmirk" d="M-80 15 Q10 45 90 -25" opacity="0"/>
+   <path id="mFrown" d="M-80 35 Q0 -25 80 35" opacity="0"/>
+   <path id="mWobble" d="M-100 35 Q-60 0 -25 28 Q10 0 45 28 Q80 0 110 35" opacity="0"/>
+   <ellipse id="mO" rx="34" ry="44" fill="#5a1414" opacity="0"/>
+  </g>
+  <!-- questions -->
+  <g font-family="L" font-weight="900" font-size="46" fill="#22524E" direction="ltr">
+   <text x="205" y="150" text-anchor="start" font-family="R" font-size="34" direction="rtl">أعرِبْ: كتبَ الطالبُ الدرسَ</text>
+   <text x="205" y="250" text-anchor="start" font-family="R" font-size="34" direction="rtl">ما جمعُ «كتاب»؟</text>
+   <text x="205" y="350" text-anchor="start" font-family="R" font-size="34" direction="rtl">أدخِلْ «كانَ» على الجملة</text>
+  </g>
+  <g font-family="R" font-weight="900" font-size="40" fill="#8fa29f">
+   <text x="250" y="150" text-anchor="end">.١</text><text x="250" y="250" text-anchor="end">.٢</text><text x="250" y="350" text-anchor="end">.٣</text>
+  </g>
+  <g fill="none" stroke="#B8C6C3" stroke-width="5">
+   <rect x="-265" y="105" width="64" height="64" rx="10"/><rect x="-265" y="205" width="64" height="64" rx="10"/><rect x="-265" y="305" width="64" height="64" rx="10"/>
+  </g>
+  <g fill="none" stroke="#1FAF5A" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+   <path id="ck0" d="M-258 140 L-238 162 L-196 112" stroke-dasharray="120" stroke-dashoffset="120"/>
+   <path id="ck1" d="M-258 240 L-238 262 L-196 212" stroke-dasharray="120" stroke-dashoffset="120"/>
+   <path id="ck2" d="M-258 340 L-238 362 L-196 312" stroke-dasharray="120" stroke-dashoffset="120"/>
+  </g>
+  <!-- sweat & tears -->
+  <path id="sw0" d="M0 -30 Q20 0 0 12 Q-20 0 0 -30Z" fill="#7FD3FF" opacity="0"/>
+  <path id="sw1" d="M0 -30 Q20 0 0 12 Q-20 0 0 -30Z" fill="#7FD3FF" opacity="0"/>
+  <path id="sw2" d="M0 -30 Q20 0 0 12 Q-20 0 0 -30Z" fill="#7FD3FF" opacity="0"/>
+  <path id="tr0" d="M0 -30 Q22 0 0 14 Q-22 0 0 -30Z" fill="#5EC2FF" opacity="0"/>
+  <path id="tr1" d="M0 -30 Q22 0 0 14 Q-22 0 0 -30Z" fill="#5EC2FF" opacity="0"/>
+  <!-- right arm with red pen -->
+  <path id="armR" d="M300 60 Q360 30 400 -20" stroke="#0d1715" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <g id="pen">
+   <rect x="-14" y="-110" width="28" height="140" rx="8" fill="#E53935"/>
+   <rect x="-14" y="-110" width="28" height="30" rx="8" fill="#8E1B1B"/>
+   <path d="M-14 30 L14 30 L0 62 Z" fill="#F2D7A6"/><path d="M-5 50 L5 50 L0 62Z" fill="#E53935"/>
+   <circle r="22" cy="0" fill="#fff" stroke="#0d1715" stroke-width="8"/>
+  </g>
+ </svg>
+ </div>
+
+ <div class="chip" id="chipEp"><span>الحلقة ٣ · الامتحان يتكلّم</span></div>
+ <div class="knock" id="k0" style="left:60px;top:200px">طَق!</div>
+ <div class="knock" id="k1" style="left:620px;top:330px">طَق!</div>
+ <div id="badge"><div class="lg"><img src="logo-white.png"></div><span>طلاب رواد</span></div>
+ <div class="tag" id="t0" style="top:300px"><span><em>✓</em>نقاط الضعف مكشوفة</span></div>
+ <div class="tag" id="t1" style="top:300px"><span><em>✓</em>أسئلة جديدة كل مرة</span></div>
+ <div class="tag" id="t2" style="top:300px"><span><em>✓</em>متابعة كل يوم</span></div>
+
+ <div class="cap" id="c0">أنا امتحانُ <b>اللغةِ العربيّة</b><br>للصفِّ السابع!</div>
+ <div class="cap" id="c1">لم يهزمْني طالبٌ<br><b>منذُ قرون!</b></div>
+ <div class="cap" id="c2">أُخيفُهم بالإعراب…<br>وأُرعبُهم بـ<b>كانَ وأخواتِها!</b></div>
+ <div class="cap" id="c3">وأنتظرُ الخطأَ…<br><b>في الممنوعِ من الصرف</b></div>
+ <div class="cap" id="c4">لكنْ هذا العام…<br>وصلَ طلابٌ من <b>رُوّاد!</b></div>
+ <div class="cap" id="c5">يُعربون الكلمات…<br><b>كأنّها لعبة!</b></div>
+ <div class="cap" id="c6">أسئلةٌ لم يرَوها من قبل…<br><b>ويحلّونها!</b></div>
+ <div class="cap" id="c7">ومعلّمٌ يتابعُهم<br><b>كلَّ يوم!</b></div>
+ <div class="cap big" id="c8">واأسفاه!!<br>هذا ليس عدلًا!!</div>
+
+ <div id="flash"></div>
+ <div id="vig"></div>
+</div>
+
+<div id="end">
+ <div class="logo"><img src="logo-white.png"></div>
+ <div class="line" id="tag1">الامتحانُ يعرفُنا.</div>
+ <div class="line" id="tag2"><span>تحضير للامتحانات · فردي وجماعي</span></div>
+ <div class="line" id="tag3">تشخيص · متابعة يومية · تدريب على أسئلة جديدة</div>
+ <div class="line" id="wa"><span><i></i>0546111668</span></div>
+ <div class="line" id="place">معهد رُوّاد · دبورية</div>
+ <svg id="peek" viewBox="-400 -500 800 1000">
+  <g transform="rotate(-14)">
+   <path d="M-300 -410 L230 -410 L300 -340 L300 600 L-300 600 Z" fill="#FBFAF4"/>
+   <path d="M230 -410 L230 -340 L300 -340 Z" fill="#DEDACB"/>
+   <g stroke="#0d1715" stroke-width="16" stroke-linecap="round"><line x1="-170" y1="-230" x2="-70" y2="-200"/><line x1="70" y1="-200" x2="170" y2="-230"/></g>
+   <g transform="translate(-110,-110)"><ellipse rx="64" ry="78" fill="#fff" stroke="#0d1715" stroke-width="9"/><circle id="ppL" r="26" fill="#0d1715"/></g>
+   <g transform="translate(110,-110)"><ellipse rx="64" ry="78" fill="#fff" stroke="#0d1715" stroke-width="9"/><circle id="ppR" r="26" fill="#0d1715"/></g>
+   <path d="M-100 40 Q-60 5 -25 32 Q10 5 45 32 Q80 5 110 40" stroke="#0d1715" stroke-width="13" fill="none" stroke-linecap="round"/>
+   <path id="pd" d="M0 -30 Q22 0 0 14 Q-22 0 0 -30Z" fill="#7FD3FF" transform="translate(-200,-200)"/>
+  </g>
+ </svg>
+</div>
+
+<script src="timeline.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const elastic=x=>x===0?0:x===1?1:Math.pow(2,-10*x)*Math.sin((x*10-.75)*(2*Math.PI)/3)+1;
+const lerp=(a,b,x)=>a+(b-a)*x;
+const win=(t,a,b,fi=.15,fo=.15)=>Math.min(seg(t,a,a+fi),1-seg(t,b-fo,b));
+// rays
+(function(){const r=$('rays');for(let i=0;i<16;i++){const e=document.createElement('i');e.style.transform=`rotate(${i*22.5}deg)`;r.appendChild(e)}})();
+
+const CAPS=[['c0',.25,1.9],['c1',1.9,3.4],['c2',3.4,5.6],['c3',5.6,8.0],['c4',9.0,11.0],['c5',11.0,14.0],['c6',14.0,16.6],['c7',16.6,19.0],['c8',19.0,22.0]];
+function mouth(name){for(const m of ['mSmile','mSmirk','mFrown','mWobble','mO'])$(m).setAttribute('opacity',m===name?1:0)}
+
+function render(t){
+ t=remap(t);
+ // ---------- background moods
+ $('bgred').style.opacity=win(t,3.4,8.2,.6,.4)*.9;
+ $('bgsad').style.opacity=win(t,19.0,22.2,.3,.2);
+ $('rays').style.opacity=win(t,9.0,19.0,.5,.4);
+ $('rays').style.transform=`rotate(${t*8}deg)`;
+ $('grid').style.transform=`translateY(${(t*30)%120}px)`;
+
+ // ---------- character base motion
+ let x=0,y=0,rot=0,sc=1,sx=1,sy=1;
+ // drop-in 0-0.7
+ const d=seg(t,0,.7);
+ y=lerp(-1500,0,eo(d)); if(t<.95){const s=seg(t,.7,.95);sy=1-.12*Math.sin(s*Math.PI);sx=1+.08*Math.sin(s*Math.PI)}
+ // idle bob
+ y+=Math.sin(t*3.2)*8;
+ // confident sway 3.4-8
+ if(t>3.4&&t<8.2){rot=Math.sin(t*2.4)*4*win(t,3.4,8.2,.4,.3); sc=1+.04*win(t,3.4,8.2,.4,.3)}
+ // knock shake 8.0-9.0
+ let shk=0; if(t>8.0&&t<8.35) shk=1; if(t>8.6&&t<8.95) shk=1;
+ // trembling 14-19
+ const tr=win(t,14,19.2,.6,.2)*seg(t,14,19);
+ x+=Math.sin(t*70)*10*tr; rot+=Math.sin(t*55)*1.5*tr;
+ // shrink & cry 19-22
+ if(t>19){const s=eo(seg(t,19,19.6)); sc=lerp(1,.78,s); y+=lerp(0,-120,s); x+=Math.sin(t*40)*8; }
+ // exit 21.8-22.3
+ const ex=seg(t,21.8,22.3); y+=lerp(0,1700,ex*ex);
+ $('char').style.transform=`translate(${x}px,${y}px) rotate(${rot}deg) scale(${sc*sx},${sc*sy})`;
+ const wshake=shk?`translate(${Math.sin(t*120)*22}px,${Math.cos(t*97)*16}px)`:'none';
+ $('world').style.transform=wshake;
+ $('flash').style.opacity=Math.max(win(t,8.0,8.18,.02,.15)*.55,win(t,8.6,8.78,.02,.15)*.4,win(t,21.95,22.25,.05,.25));
+
+ // ---------- face state
+ let look=0, eyeS=1, browAng=0, browY=-215, mood='mSmile', lid=0, blush=0;
+ if(t<1.9){ // looking around
+  const s=seg(t,.8,1.9); look=Math.sin(s*Math.PI*2)*1; mood='mSmile';
+ } else if(t<3.4){ eyeS=1+.25*eo(seg(t,1.9,2.2)); look=Math.sin(t*14)*.35; browAng=-14; browY=-235; mood='mO'; }
+ else if(t<8.0){ browAng=18; browY=-195; mood='mSmirk'; lid=.38; look=.55*Math.sin(t*1.3); blush=0 }
+ else if(t<11){ eyeS=1.3; browAng=-18; browY=-245; mood='mO'; look=0.9; }
+ else if(t<14){ eyeS=1.2; browAng=-14; browY=-235; mood='mFrown'; look=Math.sin(t*6)*.5; }
+ else if(t<19){ eyeS=1.15; browAng=-20; browY=-238; mood='mWobble'; look=-.5+Math.sin(t*9)*.4; }
+ else { eyeS=.9; browAng=-24; browY=-225; mood='mWobble'; lid=.45; look=0; }
+ // blink
+ const bt=t%3.1; if(bt>2.95&&t<8) lid=Math.max(lid,1-Math.abs(bt-3.025)/.075);
+ mouth(mood);
+ if(mood==='mO'){$('mO').setAttribute('ry',44+Math.sin(t*10)*4)}
+ for(const [s,dir] of [['L',-1],['R',1]]){
+  $('ew'+s).setAttribute('rx',64*eyeS);$('ew'+s).setAttribute('ry',74*eyeS);
+  const px=look*26, py=(t>=14&&t<19)?-8:0;
+  $('pu'+s).setAttribute('cx',px);$('pu'+s).setAttribute('cy',py);
+  $('pu'+s).setAttribute('r',t>=8&&t<11?18:28);
+  $('gl'+s).setAttribute('cx',px+9);$('gl'+s).setAttribute('cy',py-10);
+  $('lid'+s).setAttribute('y',-80*eyeS);$('lid'+s).setAttribute('height',160*eyeS*lid);
+ }
+ // brows: angry (positive) = inner ends down
+ const a=browAng*Math.PI/180, hw=50;
+ const bL=$('browL'), bR=$('browR'); const cxL=-110,cxR=110;
+ bL.setAttribute('x1',cxL-hw*Math.cos(a));bL.setAttribute('y1',browY-hw*Math.sin(a));bL.setAttribute('x2',cxL+hw*Math.cos(a));bL.setAttribute('y2',browY+hw*Math.sin(a));
+ bR.setAttribute('x1',cxR-hw*Math.cos(a));bR.setAttribute('y1',browY+hw*Math.sin(a));bR.setAttribute('x2',cxR+hw*Math.cos(a));bR.setAttribute('y2',browY-hw*Math.sin(a));
+ $('blL').setAttribute('opacity',t>19?.7:0);$('blR').setAttribute('opacity',t>19?.7:0);
+
+ // ---------- arms & pen
+ let hx=400, hy=-20, pr=20;
+ if(t<3.4){hy=-10+Math.sin(t*3)*10; pr=15}
+ else if(t<8.0){ hx=410; hy=-80+Math.sin(t*9)*40; pr=20+Math.sin(t*9)*25 } // waving pen
+ else if(t<14){ hx=360+(t<9?0:0); hy=120; pr=60 } // dropped
+ else if(t<19){ hx=380; hy=160+Math.sin(t*50)*8; pr=80 }
+ else { hx=330; hy=260; pr=100 }
+ $('armR').setAttribute('d',`M300 60 Q${(300+hx)/2+20} ${(60+hy)/2-30} ${hx} ${hy}`);
+ $('pen').setAttribute('transform',`translate(${hx},${hy}) rotate(${pr})`);
+ let lx=-400, ly=120;
+ if(t>=1.9&&t<3.4){lx=-330;ly=-200} // hand to face
+ else if(t>=8&&t<11){lx=-380;ly=-150}
+ else if(t>=19){lx=-260;ly=-60+Math.sin(t*20)*8} // wiping tears
+ else {ly=120+Math.sin(t*3)*12}
+ $('armL').setAttribute('d',`M-300 60 Q${(-300+lx)/2-20} ${(60+ly)/2+20} ${lx} ${ly}`);
+ $('handL').setAttribute('cx',lx);$('handL').setAttribute('cy',ly);
+ // legs: tap foot in confident phase, knees shake in fear
+ const tap=(t>3.4&&t<8)?Math.max(0,Math.sin(t*12))*-18:0;
+ const kn=(t>14)?Math.sin(t*60)*10:0;
+ $('legR').setAttribute('d',`M110 400 L${120+kn} 470`);$('legL').setAttribute('d',`M-110 400 L${-120-kn} 470`);
+ $('shoeR').setAttribute('cy',478+tap);$('shoeR').setAttribute('cx',140+kn);$('shoeL').setAttribute('cx',-140-kn);
+
+ // ---------- checks & grade
+ const cks=[14.4,15.4,16.4];
+ cks.forEach((c,i)=>$('ck'+i).setAttribute('stroke-dashoffset',120*(1-eo(seg(t,c,c+.35)))));
+ const g=seg(t,17.6,17.9);
+ $('gradeQ').setAttribute('opacity',1-g);$('gradeOK').setAttribute('opacity',g);
+ $('gradeRing').setAttribute('stroke',g>.5?'#1FAF5A':'#E53935');
+ $('grade').setAttribute('transform',`translate(-205,-318) scale(${1+.35*Math.sin(g*Math.PI)})`);
+
+ // ---------- sweat
+ [[14.2,-255,-175],[15.3,245,-235],[16.6,-250,-60]].forEach(([s0,sx0,sy0],i)=>{
+  const p=((t-s0)%1.3)/1.3; const on=t>s0&&t<19.2;
+  const e=$('sw'+i); e.setAttribute('opacity',on?(1-p):0); e.setAttribute('transform',`translate(${sx0},${sy0+p*160}) scale(${1+p*.3})`);
+ });
+ [[-110,0],[110,.45]].forEach(([ex0,off],i)=>{
+  const p=((t-19.2+off)%.9)/.9; const on=t>19.2&&t<22;
+  const e=$('tr'+i); e.setAttribute('opacity',on?1-p*.6:0); e.setAttribute('transform',`translate(${ex0+(i?1:-1)*p*40},${-60+p*220})`);
+ });
+
+ // ---------- red X stamps (3.4-8)
+ [3.9,4.4,5.0,5.7,6.3].forEach((s,i)=>{
+  const p=seg(t,s,s+.3); const out=seg(t,7.8,8.1);
+  const e=$('x'+i); e.style.opacity=p*(1-out); e.style.transform=`scale(${lerp(2.4,1,back(p))*(1-out*.5)}) rotate(${i*13-20}deg)`;
+ });
+
+ // ---------- episode chip
+ const ce=win(t,.4,8.0,.3,.3);
+ $('chipEp').style.opacity=ce; $('chipEp').style.transform=`translateY(${lerp(-60,0,eo(seg(t,.4,.8)))}px)`;
+
+ // ---------- knocks
+ [['k0',8.0],['k1',8.6]].forEach(([id,s])=>{const p=seg(t,s,s+.2);const o=1-seg(t,s+.7,s+.95);
+  $(id).style.opacity=p*o;$(id).style.transform=`scale(${lerp(2,1,back(p))}) rotate(${id==='k0'?-12:10}deg)`;});
+ // badge
+ const bp=seg(t,9.1,9.6), bo=1-seg(t,13.6,14.0);
+ $('badge').style.opacity=bp*bo; $('badge').style.transform=`translateX(${lerp(700,0,back(bp))}px)`;
+ // tags (one at a time, at top)
+ [['t0',11.6,14.0],['t1',14.1,16.5],['t2',16.6,19.0]].forEach(([id,a,b])=>{const p=seg(t,a,a+.35);const o=1-seg(t,b-.25,b);
+  $(id).style.opacity=p*o;$(id).style.transform=`translateY(${lerp(-140,0,back(p))}px) scale(${lerp(.6,1,back(p))})`;});
+
+ // ---------- captions
+ for(const [id,a,b] of CAPS){const e=$(id);const p=seg(t,a,a+.22);const o=1-seg(t,b-.12,b);
+  e.style.opacity=(t>=a&&t<b)?Math.min(p*3,o):0;
+  let s=lerp(.6,1,back(p)); if(id==='c8'){s=lerp(2.2,1,back(p)); e.style.transform=`scale(${s}) rotate(${Math.sin(t*30)*2}deg)`} else e.style.transform=`scale(${s})`;}
+
+ // ---------- end card
+ const en=seg(t,22.0,22.35); $('end').style.opacity=en;
+ const L=(s)=>back(seg(t,s,s+.4));
+ const lg=L(22.2); document.querySelector('#end .logo').style.transform=`scale(${lerp(.4,1,lg)})`; document.querySelector('#end .logo').style.opacity=cl(lg);
+ const l1=L(22.6); $('tag1').style.opacity=cl(l1*2); $('tag1').style.transform=`scale(${lerp(1.8,1,l1)})`;
+ const l2=L(23.1); $('tag2').style.opacity=cl(l2*2); $('tag2').style.transform=`translateY(${lerp(60,0,l2)}px)`;
+ const l3=L(23.4); $('tag3').style.opacity=cl(l3*2); $('tag3').style.transform=`translateY(${lerp(60,0,l3)}px)`;
+ const l4=L(23.7); $('wa').style.opacity=cl(l4*2); $('wa').style.transform=`scale(${lerp(.5,1,l4)*(1+.03*Math.sin(t*6)*(t>24.2))})`;
+ const l5=L(24.0); $('place').style.opacity=cl(l5*2);
+ const pk=eo(seg(t,24.1,24.7)); $('peek').style.transform=`translate(${lerp(260,0,pk)}px,${lerp(300,0,pk)+Math.sin(t*40)*3}px)`;
+ $('ppL').setAttribute('cx',-22+Math.sin(t*2)*6);$('ppR').setAttribute('cx',-22+Math.sin(t*2)*6);
+ $('pd').setAttribute('transform',`translate(-200,${-200+((t*120)%120)})`);
+}
+render(0);
+</script></body></html>
