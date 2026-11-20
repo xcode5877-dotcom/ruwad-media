@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+@font-face{font-family:Z;src:url(lalezar-arabic-400-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:R,L;color:#fff;position:relative;background:#0B201E}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,#2E6862 0,#1A433F 46%,#0A1D1B 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.04) 2px,transparent 2px);background-size:90px 90px}
+.slide{position:absolute;inset:0;display:none}
+.Z{font-family:Z,L;-webkit-text-stroke:4px #0a1a18;paint-order:stroke fill;text-shadow:0 6px 0 #0a1a18}
+.y{color:#FFD84D}.r{color:#FF5A5A}.g{color:#3EE08A}
+.top{position:absolute;top:56px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center}
+.tag{background:#FFD84D;color:#14332F;font-weight:900;font-size:30px;border-radius:999px;padding:10px 30px}
+.num{font-family:L;font-weight:900;font-size:34px;color:#9fd0c9;direction:ltr}
+.foot{position:absolute;bottom:50px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;color:#9fd0c9;font-weight:700;font-size:28px}
+.foot img{height:56px}
+.h{position:absolute;left:60px;right:60px;top:150px;text-align:center;font-size:96px;line-height:1.15}
+.sub{position:absolute;left:80px;right:80px;text-align:center;font-weight:700;font-size:40px;line-height:1.45;color:#e6f4f1}
+.card{position:absolute;left:70px;right:70px;background:rgba(10,30,28,.82);border:5px solid #3EE08A;border-radius:36px;padding:30px 40px;font-weight:700;font-size:40px;line-height:1.45}
+.card b{color:#FFD84D;font-weight:900}
+.swipe{position:absolute;bottom:130px;left:0;right:0;text-align:center;font-weight:900;font-size:36px;color:#FFD84D}
+/* price tag */
+.ptag{position:absolute;background:#FBFAF4;color:#14332F;border-radius:30px 90px 90px 30px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.hole{position:absolute;width:44px;height:44px;border-radius:50%;background:#1A433F;border:8px solid #d9d4c3}
+.big{font-family:L;font-weight:900;direction:ltr}
+.strike{position:relative;display:inline-block}
+.strike:after{content:"";position:absolute;left:-10px;right:-10px;top:50%;height:16px;background:#E53935;border-radius:8px;transform:rotate(-12deg)}
+/* popcorn */
+.pc{position:absolute;bottom:0;display:flex;flex-direction:column;align-items:center}
+.cup{background:repeating-linear-gradient(90deg,#E53935 0 34px,#FBFAF4 34px 68px);clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);border-radius:0 0 18px 18px}
+.corn{border-radius:50% 50% 10px 10px;background:radial-gradient(circle at 30% 40%,#fff6cf 0 18%,transparent 19%),radial-gradient(circle at 70% 30%,#fff2b8 0 20%,transparent 21%),radial-gradient(circle at 50% 70%,#ffeaa0 0 22%,transparent 23%),#FFE48A}
+.price{margin-top:18px;font-family:L;font-weight:900;font-size:64px;direction:ltr;background:#fff;color:#14332F;border-radius:20px;padding:4px 26px}
+.lbl{margin-top:10px;font-weight:900;font-size:36px}
+/* halt */
+.oct{position:absolute;width:250px;height:250px;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);display:flex;flex-direction:column;align-items:center;justify-content:center;background:#E53935}
+.oct .L{font-family:L;font-weight:900;font-size:120px;line-height:1}
+.oct .w{font-weight:900;font-size:40px;margin-top:4px}
+.opt{position:absolute;left:90px;right:90px;height:150px;border-radius:30px;background:rgba(10,30,28,.85);border:5px solid #9fd0c9;display:flex;align-items:center;gap:30px;padding:0 40px;font-weight:900;font-size:52px}
+.opt i{font-style:normal;width:90px;height:90px;border-radius:50%;background:#FFD84D;color:#14332F;display:flex;align-items:center;justify-content:center;font-size:52px}
+.opt.ok{border-color:#3EE08A;background:rgba(62,224,138,.22)} .opt.ok i{background:#3EE08A}
+.opt.no{opacity:.4}
+.ltr{direction:ltr;unicode-bidi:isolate;font-family:L}
+</style></head><body><div class="bg"></div><div class="grid"></div><div class="slide" id="1"><div class="top" style="top:170px"><span class="tag">سؤال اليوم · رياضيات سابع</span><span class="num">1/3</span></div>
+<div class="h Z" style="top:270px;font-size:84px">الساعة <span class="ltr">4:00</span>… <span class="y">كم الزاوية<br>بين العقربين؟</span></div><div style="position:absolute;left:50%;top:500px;width:340px;height:340px;margin-left:-170px;border-radius:50%;background:#FBFAF4;border:14px solid #FFD84D;box-shadow:0 20px 50px rgba(0,0,0,.5)">
+<div style="position:absolute;left:148px;top:18px;width:16px;height:16px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:216px;top:38px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:264px;top:86px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:278px;top:148px;width:16px;height:16px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:264px;top:216px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:216px;top:264px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:148px;top:278px;width:16px;height:16px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:86px;top:264px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:38px;top:216px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:18px;top:148px;width:16px;height:16px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:38px;top:86px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:86px;top:38px;width:10px;height:10px;border-radius:50%;background:#14332F"></div>
+<div style="position:absolute;left:50%;top:50%;width:14px;height:110px;margin-left:-7px;margin-top:-110px;background:#14332F;border-radius:7px;transform-origin:50% 100%;transform:rotate(120deg)"></div>
+<div style="position:absolute;left:50%;top:50%;width:10px;height:140px;margin-left:-5px;margin-top:-140px;background:#14332F;border-radius:5px;transform-origin:50% 100%;transform:rotate(0deg)"></div>
+<div style="position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px;border-radius:50%;background:#E53935"></div></div><div class="opt" style="top:880px"><i>أ</i><span><span class="ltr">150°</span></span></div><div class="opt" style="top:1060px"><i>ب</i><span><span class="ltr">120°</span></span></div><div class="opt" style="top:1240px"><i>ج</i><span><span class="ltr">24°</span></span></div><div class="sub" style="top:1450px;color:#FFD84D;font-weight:900">جاوبوا بقلبكم… الجواب بالستوري الجاي</div></div><div class="slide" id="2"><div class="top" style="top:170px"><span class="tag">الجواب</span><span class="num">2/3</span></div>
+<div class="h Z" style="top:270px;font-size:110px"><span class="y ltr">120°</span></div><div style="position:absolute;left:50%;top:500px;width:340px;height:340px;margin-left:-170px;border-radius:50%;background:#FBFAF4;border:14px solid #FFD84D;box-shadow:0 20px 50px rgba(0,0,0,.5)">
+<div style="position:absolute;left:148px;top:18px;width:16px;height:16px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:216px;top:38px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:264px;top:86px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:278px;top:148px;width:16px;height:16px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:264px;top:216px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:216px;top:264px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:148px;top:278px;width:16px;height:16px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:86px;top:264px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:38px;top:216px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:18px;top:148px;width:16px;height:16px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:38px;top:86px;width:10px;height:10px;border-radius:50%;background:#14332F"></div><div style="position:absolute;left:86px;top:38px;width:10px;height:10px;border-radius:50%;background:#14332F"></div>
+<div style="position:absolute;left:50%;top:50%;width:14px;height:110px;margin-left:-7px;margin-top:-110px;background:#14332F;border-radius:7px;transform-origin:50% 100%;transform:rotate(120deg)"></div>
+<div style="position:absolute;left:50%;top:50%;width:10px;height:140px;margin-left:-5px;margin-top:-140px;background:#14332F;border-radius:5px;transform-origin:50% 100%;transform:rotate(0deg)"></div>
+<div style="position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px;border-radius:50%;background:#E53935"></div></div><div class="opt no" style="top:880px"><i>أ</i><span><span class="ltr">150°</span></span></div><div class="opt ok" style="top:1060px"><i>ب</i><span><span class="ltr">120°</span></span></div><div class="opt no" style="top:1240px"><i>ج</i><span><span class="ltr">24°</span></span></div><div class="card" style="top:1430px;text-align:center"><b>كل ساعة = <span class="ltr">30°</span></b><br>لأنّ الدائرة <span class="ltr">360°</span> وفيها <span class="ltr">12</span> ساعة<br>فالساعة 4: <span class="ltr">4 × 30° = 120°</span></div></div><div class="slide" id="3"><div class="top" style="top:170px"><span class="tag">دبورية بتتحضّر للامتحانات</span><span class="num">3/3</span></div>
+<div style="position:absolute;left:0;right:0;top:330px;text-align:center"><img src="logo-white.png" style="width:340px"></div>
+<div class="h Z" style="top:620px;font-size:92px">زوايا السابع<br><span class="y">صارت لعبة عقارب</span></div>
+<div class="card" style="top:930px">تشخيص · خطة للامتحان · <b>أسئلة جديدة كل مرة عالمنصة</b> · متابعة كل يوم.</div>
+<div style="position:absolute;left:0;right:0;top:1250px;text-align:center"><span style="display:inline-block;background:#25D366;border-radius:999px;padding:18px 54px;font-family:L;font-weight:900;font-size:80px;direction:ltr">0546111668</span>
+<div style="margin-top:18px;font-weight:900;font-size:40px;color:#FFD84D">ابعتولنا «امتحان» عالواتساب</div></div></div><script>const n=new URLSearchParams(location.search).get('s');document.getElementById(n).style.display='block';</script></body></html>
