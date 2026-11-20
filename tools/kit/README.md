@@ -3,6 +3,7 @@
 Everything needed to keep the RUWAD page (ruwad.academy / FB page 102371038845741) posting daily.
 
 ## Rules (from Fawaz)
+- Story order: space a day's stories 10 min apart (13:00 question, 13:10 answer, 13:20 CTA). 1-min gaps got published out of order on 19.11.
 - Post EVERY day: stories daily + a reel or carousel at least every 2 days; always keep 48h scheduled ahead in Metricool (brand id 7641800, timezone Asia/Jerusalem). Fawaz gave full permission (18.11.2026) to create and schedule without per-post approval.
 - Goal: grow organic followers in Daburiyya and the surrounding area; exam season (1.11–20.12.2026).
 - Style: dark teal brand (#1A433F / #FFD84D / #3EE08A), Lalezar headlines + Rubik, every post with a visual hook. No clichés (no results posts, no testimonials). Never claim "guaranteed" results.
