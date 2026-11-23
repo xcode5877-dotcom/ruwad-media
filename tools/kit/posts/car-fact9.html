@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+@font-face{font-family:Z;src:url(lalezar-arabic-400-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:R,L;color:#fff;position:relative;background:#0B201E}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,#2E6862 0,#1A433F 46%,#0A1D1B 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.04) 2px,transparent 2px);background-size:90px 90px}
+.slide{position:absolute;inset:0;display:none}
+.Z{font-family:Z,L;-webkit-text-stroke:4px #0a1a18;paint-order:stroke fill;text-shadow:0 6px 0 #0a1a18}
+.y{color:#FFD84D}.r{color:#FF5A5A}.g{color:#3EE08A}
+.top{position:absolute;top:56px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center}
+.tag{background:#FFD84D;color:#14332F;font-weight:900;font-size:30px;border-radius:999px;padding:10px 30px}
+.num{font-family:L;font-weight:900;font-size:34px;color:#9fd0c9;direction:ltr}
+.foot{position:absolute;bottom:50px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;color:#9fd0c9;font-weight:700;font-size:28px}
+.foot img{height:56px}
+.h{position:absolute;left:60px;right:60px;top:150px;text-align:center;font-size:96px;line-height:1.15}
+.sub{position:absolute;left:80px;right:80px;text-align:center;font-weight:700;font-size:40px;line-height:1.45;color:#e6f4f1}
+.card{position:absolute;left:70px;right:70px;background:rgba(10,30,28,.82);border:5px solid #3EE08A;border-radius:36px;padding:30px 40px;font-weight:700;font-size:40px;line-height:1.45}
+.card b{color:#FFD84D;font-weight:900}
+.swipe{position:absolute;bottom:130px;left:0;right:0;text-align:center;font-weight:900;font-size:36px;color:#FFD84D}
+/* price tag */
+.ptag{position:absolute;background:#FBFAF4;color:#14332F;border-radius:30px 90px 90px 30px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.hole{position:absolute;width:44px;height:44px;border-radius:50%;background:#1A433F;border:8px solid #d9d4c3}
+.big{font-family:L;font-weight:900;direction:ltr}
+.strike{position:relative;display:inline-block}
+.strike:after{content:"";position:absolute;left:-10px;right:-10px;top:50%;height:16px;background:#E53935;border-radius:8px;transform:rotate(-12deg)}
+/* popcorn */
+.pc{position:absolute;bottom:0;display:flex;flex-direction:column;align-items:center}
+.cup{background:repeating-linear-gradient(90deg,#E53935 0 34px,#FBFAF4 34px 68px);clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);border-radius:0 0 18px 18px}
+.corn{border-radius:50% 50% 10px 10px;background:radial-gradient(circle at 30% 40%,#fff6cf 0 18%,transparent 19%),radial-gradient(circle at 70% 30%,#fff2b8 0 20%,transparent 21%),radial-gradient(circle at 50% 70%,#ffeaa0 0 22%,transparent 23%),#FFE48A}
+.price{margin-top:18px;font-family:L;font-weight:900;font-size:64px;direction:ltr;background:#fff;color:#14332F;border-radius:20px;padding:4px 26px}
+.lbl{margin-top:10px;font-weight:900;font-size:36px}
+/* halt */
+.oct{position:absolute;width:250px;height:250px;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);display:flex;flex-direction:column;align-items:center;justify-content:center;background:#E53935}
+.oct .L{font-family:L;font-weight:900;font-size:120px;line-height:1}
+.oct .w{font-weight:900;font-size:40px;margin-top:4px}
+</style><style>
+.eq{position:absolute;left:0;right:0;text-align:center}
+.eqb{display:inline-block;background:#FBFAF4;color:#14332F;border-radius:28px;padding:10px 46px;font-family:L;font-weight:900;font-size:96px;direction:ltr;box-shadow:0 14px 0 #c9c3ae,0 24px 40px rgba(0,0,0,.45)}
+.bad,.ok{position:absolute;left:70px;right:70px;border-radius:30px;padding:24px 36px;font-weight:700;font-size:40px;line-height:1.45}
+.bad{background:rgba(229,57,53,.16);border:5px solid #FF5A5A}
+.ok{background:rgba(62,224,138,.14);border:5px solid #3EE08A}
+.lab{font-weight:900;font-size:34px;margin-bottom:6px}
+.bad .lab{color:#FF5A5A}.ok .lab{color:#3EE08A}
+.m{direction:ltr;unicode-bidi:isolate;font-family:L;font-weight:900;font-size:46px;color:#fff}
+.hz{position:absolute;left:250px;width:580px;height:380px;border-radius:40px;background:repeating-linear-gradient(-45deg,#FFD84D 0 50px,#14332F 50px 100px);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.hz .in{position:absolute;inset:34px;border-radius:24px;background:#FBFAF4;color:#14332F;display:flex;align-items:center;justify-content:center;gap:24px}
+</style></head><body>
+<div class="bg"></div><div class="grid"></div><div class="slide" id="s1"><div class="top"><span class="tag">رياضيات · الصف التاسع</span><span class="num">1/7</span></div>
+<div class="h Z" style="top:170px;font-size:92px">امتحان التحليل<br><span class="y">حاطط 5 فخاخ</span></div>
+<div class="hz" style="top:470px;transform:rotate(-4deg)"><div class="in"><span style="font-family:L;font-weight:900;font-size:220px;line-height:1">5</span><span style="font-family:Z;font-size:110px">فخاخ</span></div></div>
+<div class="sub" style="top:930px">بتحلّ وإنت فاكر حالك صح… <b style="color:#FFD84D">وبتخسر علامات</b>.<br>كم فخ منهم بتوقع فيه؟</div>
+<div class="swipe">← اسحب</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div><div class="slide" id="s2"><div class="top"><span class="tag">الفخ 1</span><span class="num">2/7</span></div>
+<div class="h Z" style="top:150px;font-size:80px">قسمت على <span class="y">x</span>؟ <span class="r">خسرت حلّ!</span></div>
+<div class="eq" style="top:330px"><span class="eqb">x² = 5x</span></div>
+<div class="bad" style="top:560px"><div class="lab">الغلط اللي بيصير</div>نقسم الطرفين على x ← <span class="m">x = 5</span> وبس.</div>
+<div class="ok" style="top:820px"><div class="lab">الصح</div><span class="m">x² − 5x = 0</span> ← <span class="m">x(x − 5) = 0</span><br><span class="m">x = 0</span> أو <span class="m">x = 5</span> · <b style="color:#FFD84D">حلّين</b></div>
+<div class="swipe" style="bottom:140px">← الفخ الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div><div class="slide" id="s3"><div class="top"><span class="tag">الفخ 2</span><span class="num">3/7</span></div>
+<div class="h Z" style="top:150px;font-size:80px">جذر 49 <span class="y">مش بس 7</span></div>
+<div class="eq" style="top:330px"><span class="eqb">x² = 49</span></div>
+<div class="bad" style="top:560px"><div class="lab">الغلط اللي بيصير</div><span class="m">x = 7</span> وخلصنا.</div>
+<div class="ok" style="top:820px"><div class="lab">الصح</div><span class="m">x² − 49 = 0</span> ← <span class="m">(x − 7)(x + 7) = 0</span><br><span class="m">x = 7</span> أو <span class="m">x = −7</span></div>
+<div class="swipe" style="bottom:140px">← الفخ الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div><div class="slide" id="s4"><div class="top"><span class="tag">الفخ 3</span><span class="num">4/7</span></div>
+<div class="h Z" style="top:150px;font-size:80px">في معادلات <span class="y">ما إلها حل</span></div>
+<div class="eq" style="top:330px"><span class="eqb">x² + 9 = 0</span></div>
+<div class="bad" style="top:560px"><div class="lab">الغلط اللي بيصير</div><span class="m">x = 3</span> أو <span class="m">x = −3</span></div>
+<div class="ok" style="top:820px"><div class="lab">الصح</div><span class="m">x² = −9</span> · ومربّع أي عدد دايمًا <span class="m">≥ 0</span><br><b style="color:#FFD84D">لا يوجد حلّ</b></div>
+<div class="swipe" style="bottom:140px">← الفخ الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div><div class="slide" id="s5"><div class="top"><span class="tag">الفخ 4</span><span class="num">5/7</span></div>
+<div class="h Z" style="top:150px;font-size:80px">مجال التعويض <span class="y">من الكسر الأصلي</span></div>
+<div class="eq" style="top:330px"><span class="eqb">(x − 3)² / (x² − 9)</span></div>
+<div class="bad" style="top:560px"><div class="lab">الغلط اللي بيصير</div>نختصر لـ <span class="m">(x − 3)/(x + 3)</span> ونكتب بس <span class="m">x ≠ −3</span></div>
+<div class="ok" style="top:820px"><div class="lab">الصح</div>المقام الأصلي <span class="m">(x − 3)(x + 3)</span><br>يعني <span class="m">x ≠ 3</span> و <span class="m">x ≠ −3</span></div>
+<div class="swipe" style="bottom:140px">← الفخ الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div><div class="slide" id="s6"><div class="top"><span class="tag">الفخ 5</span><span class="num">6/7</span></div>
+<div class="h Z" style="top:150px;font-size:80px">كل البسط راح؟ <span class="y">بيضل 1 مش 0</span></div>
+<div class="eq" style="top:330px"><span class="eqb">(x − 4) / (x² − 16)</span></div>
+<div class="bad" style="top:560px"><div class="lab">الغلط اللي بيصير</div>البسط راح ← الجواب <span class="m">0</span></div>
+<div class="ok" style="top:820px"><div class="lab">الصح</div><span class="m">(x − 4) / ((x − 4)(x + 4))</span><br><span class="m">= 1/(x + 4)</span> · بشرط <span class="m">x ≠ ±4</span></div>
+<div class="swipe" style="bottom:140px">← الفخ الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div><div class="slide" id="s7"><div class="top"><span class="tag">لطلاب التاسع بدبورية</span><span class="num">7/7</span></div>
+<div style="position:absolute;left:0;right:0;top:170px;text-align:center"><img src="logo-white.png" style="width:330px"></div>
+<div class="h Z" style="top:420px;font-size:84px">كم فخ وقعت فيه؟<br><span class="y">احكولنا بالكومنت</span></div>
+<div class="card" style="top:690px">عالمنصة تبعت رواد: <b>أسئلة جديدة كل مرة</b> من كل مواضيع التحليل، حلّ خطوة خطوة، و<b>تقرير أخطاء</b> بيكشف بأي فخ بتوقع.</div>
+<div style="position:absolute;left:0;right:0;top:1030px;text-align:center">
+<span style="display:inline-block;background:#25D366;border-radius:999px;padding:18px 54px;font-family:L;font-weight:900;font-size:76px;direction:ltr;box-shadow:0 14px 40px rgba(0,0,0,.35)">0546111668</span>
+<div style="margin-top:18px;font-weight:900;font-size:38px;color:#FFD84D">ابعتولنا «امتحان» عالواتساب</div></div></div><script>const n=new URLSearchParams(location.search).get('s')||'1';document.getElementById('s'+n).style.display='block';</script></body></html>

@@ -20,7 +20,7 @@ Everything needed to keep the RUWAD page (ruwad.academy / FB page 10237103884574
 ## Series so far
 Episodes: 1 math g8, 2 English g9 (British voice + Arabic subtitles), 3 Arabic g7. Next ideas: 4 science/physics g8–9, 5 "exams hold an emergency meeting about RUWAD", finale "the exam surrenders".
 Episode 4 physics g8 forces (reels/exam-talks-ep4.mp4, files in reel/ep4) → 23.11 19:00.
-Stories: question of the day per grade (q-a phys9 speed, q-b phys8 rocket, q-c chem9 H2O, q-d math7 clock angle 4:00 → 22.11, q-e g5 divisible-by-9 digit-sum 2,718 → 23.11, q-f g10 parallel 6Ω‖3Ω=2Ω → 24.11), financial-literacy g9 (fin9). Next: carousel due 25.11 19:00, then reel 27.11 (ep5 "emergency meeting").
+Stories: question of the day per grade (q-a phys9 speed, q-b phys8 rocket, q-c chem9 H2O, q-d math7 clock angle 4:00 → 22.11, q-e g5 divisible-by-9 digit-sum 2,718 → 23.11, q-f g10 parallel 6Ω‖3Ω=2Ω → 24.11, q-g g4 rounding: smallest number that rounds to 4,700 = 4,650 → 25.11), financial-literacy g9 (fin9). Carousel fact9 «امتحان التحليل حاطط 5 فخاخ» (posts/fact9, template car-fact9.html) → 25.11 19:00. Next: reel 27.11 (ep5 "emergency meeting"). shot.py: use /home/claude/work-style abs path of cwd (fixed copy in run).
 
 ## Ads
 Account retalbox (act 1430002849233135), campaign "RUWAD | امتحانات | واتساب أهالي". Region ad set paused 18.11; Daburiyya ad set running (25₪/day; raising budget needs a verified advertiser identity on the ad set).
