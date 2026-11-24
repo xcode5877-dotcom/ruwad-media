@@ -26,4 +26,4 @@ Stories: question of the day per grade (q-a phys9 speed, q-b phys8 rocket, q-c c
 Account retalbox (act 1430002849233135), campaign "RUWAD | امتحانات | واتساب أهالي". Region ad set paused 18.11; Daburiyya ad set running (25₪/day; raising budget needs a verified advertiser identity on the ad set).
 
 ## Log
-- 24.11 run: 26.11 stories (g3 order of operations 6+4×2=14) were scheduled at 10:31 by an earlier run whose files never reached the repo; images only in Metricool. Don't reuse this question. Next due: reel 27.11 19:00 (ep5) + stories 27.11.
+- 24.11: 26.11 stories q-h (g3 order of operations 6+4×2=14) were scheduled by the 10:23 run, whose GitHub push failed; images recovered from Metricool into stories/qday/q-h1..3.jpg. Next due: reel 27.11 19:00 (ep5) + stories 27.11.
