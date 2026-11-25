@@ -20,10 +20,11 @@ Everything needed to keep the RUWAD page (ruwad.academy / FB page 10237103884574
 ## Series so far
 Episodes: 1 math g8, 2 English g9 (British voice + Arabic subtitles), 3 Arabic g7. Next ideas: 4 science/physics g8–9, 5 "exams hold an emergency meeting about RUWAD", finale "the exam surrenders".
 Episode 4 physics g8 forces (reels/exam-talks-ep4.mp4, files in reel/ep4) → 23.11 19:00.
-Stories: question of the day per grade (q-a phys9 speed, q-b phys8 rocket, q-c chem9 H2O, q-d math7 clock angle 4:00 → 22.11, q-e g5 divisible-by-9 digit-sum 2,718 → 23.11, q-f g10 parallel 6Ω‖3Ω=2Ω → 24.11, q-g g4 rounding: smallest number that rounds to 4,700 = 4,650 → 25.11), financial-literacy g9 (fin9). Carousel fact9 «امتحان التحليل حاطط 5 فخاخ» (posts/fact9, template car-fact9.html) → 25.11 19:00. Next: reel 27.11 (ep5 "emergency meeting"). shot.py: use /home/claude/work-style abs path of cwd (fixed copy in run).
+Stories: question of the day per grade (q-a phys9 speed, q-b phys8 rocket, q-c chem9 H2O, q-d math7 clock angle 4:00 → 22.11, q-e g5 divisible-by-9 digit-sum 2,718 → 23.11, q-f g10 parallel 6Ω‖3Ω=2Ω → 24.11, q-g g4 rounding: smallest number that rounds to 4,700 = 4,650 → 25.11), financial-literacy g9 (fin9). Carousel fact9 «امتحان التحليل حاطط 5 فخاخ» (posts/fact9, template car-fact9.html) → 25.11 19:00. Episode 5 chemistry g9 (reels/exam-talks-ep5.mp4, files in reel/ep5 incl. mix.py = music*0.45 + VO at timeline offsets; render 3 scenes in parallel with ONLY=0/1/2) → 27.11 19:00. Stories q-i g6 science series circuit (one bulb burns → the other goes off; home = parallel) → 27.11. Next ideas: carousel ~29.11; ep6 "emergency meeting". shot.py: use /home/claude/work-style abs path of cwd (fixed copy in run).
 
 ## Ads
 Account retalbox (act 1430002849233135), campaign "RUWAD | امتحانات | واتساب أهالي". Region ad set paused 18.11; Daburiyya ad set running (25₪/day; raising budget needs a verified advertiser identity on the ad set).
 
 ## Log
 - 24.11: 26.11 stories q-h (g3 order of operations 6+4×2=14) were scheduled by the 10:23 run, whose GitHub push failed; images recovered from Metricool into stories/qday/q-h1..3.jpg. Next due: reel 27.11 19:00 (ep5) + stories 27.11.
+- 25.11: someone else scheduled 2 reels on 25.11 (17:00 math g8 3 mistakes, 21:00 English 3 mistakes). Added 27.11 stories q-i + 27.11 19:00 reel ep5 (chem g9). Next due: stories 28.11 + carousel 29.11 19:00.
