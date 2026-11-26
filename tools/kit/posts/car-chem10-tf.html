@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+@font-face{font-family:Z;src:url(lalezar-arabic-400-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;overflow:hidden;font-family:R,L;color:#fff;position:relative;background:#0B201E}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,#2E6862 0,#1A433F 46%,#0A1D1B 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.04) 2px,transparent 2px);background-size:90px 90px}
+.slide{position:absolute;inset:0;display:none}
+.Z{font-family:Z,L;-webkit-text-stroke:4px #0a1a18;paint-order:stroke fill;text-shadow:0 6px 0 #0a1a18}
+.y{color:#FFD84D}.r{color:#FF5A5A}.g{color:#3EE08A}
+.top{position:absolute;top:56px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center}
+.tag{background:#FFD84D;color:#14332F;font-weight:900;font-size:30px;border-radius:999px;padding:10px 30px}
+.num{font-family:L;font-weight:900;font-size:34px;color:#9fd0c9;direction:ltr}
+.foot{position:absolute;bottom:50px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;color:#9fd0c9;font-weight:700;font-size:28px}
+.foot img{height:56px}
+.h{position:absolute;left:60px;right:60px;top:150px;text-align:center;font-size:96px;line-height:1.15}
+.sub{position:absolute;left:80px;right:80px;text-align:center;font-weight:700;font-size:40px;line-height:1.45;color:#e6f4f1}
+.card{position:absolute;left:70px;right:70px;background:rgba(10,30,28,.82);border:5px solid #3EE08A;border-radius:36px;padding:30px 40px;font-weight:700;font-size:40px;line-height:1.45}
+.card b{color:#FFD84D;font-weight:900}
+.swipe{position:absolute;bottom:130px;left:0;right:0;text-align:center;font-weight:900;font-size:36px;color:#FFD84D}
+/* price tag */
+.ptag{position:absolute;background:#FBFAF4;color:#14332F;border-radius:30px 90px 90px 30px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.hole{position:absolute;width:44px;height:44px;border-radius:50%;background:#1A433F;border:8px solid #d9d4c3}
+.big{font-family:L;font-weight:900;direction:ltr}
+.strike{position:relative;display:inline-block}
+.strike:after{content:"";position:absolute;left:-10px;right:-10px;top:50%;height:16px;background:#E53935;border-radius:8px;transform:rotate(-12deg)}
+/* popcorn */
+.pc{position:absolute;bottom:0;display:flex;flex-direction:column;align-items:center}
+.cup{background:repeating-linear-gradient(90deg,#E53935 0 34px,#FBFAF4 34px 68px);clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);border-radius:0 0 18px 18px}
+.corn{border-radius:50% 50% 10px 10px;background:radial-gradient(circle at 30% 40%,#fff6cf 0 18%,transparent 19%),radial-gradient(circle at 70% 30%,#fff2b8 0 20%,transparent 21%),radial-gradient(circle at 50% 70%,#ffeaa0 0 22%,transparent 23%),#FFE48A}
+.price{margin-top:18px;font-family:L;font-weight:900;font-size:64px;direction:ltr;background:#fff;color:#14332F;border-radius:20px;padding:4px 26px}
+.lbl{margin-top:10px;font-weight:900;font-size:36px}
+/* halt */
+.oct{position:absolute;width:250px;height:250px;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);display:flex;flex-direction:column;align-items:center;justify-content:center;background:#E53935}
+.oct .L{font-family:L;font-weight:900;font-size:120px;line-height:1}
+.oct .w{font-weight:900;font-size:40px;margin-top:4px}
+</style><style>
+.eq{position:absolute;left:0;right:0;text-align:center}
+.eqb{display:inline-block;background:#FBFAF4;color:#14332F;border-radius:28px;padding:10px 46px;font-family:L;font-weight:900;font-size:96px;direction:ltr;box-shadow:0 14px 0 #c9c3ae,0 24px 40px rgba(0,0,0,.45)}
+.bad,.ok{position:absolute;left:70px;right:70px;border-radius:30px;padding:24px 36px;font-weight:700;font-size:40px;line-height:1.45}
+.bad{background:rgba(229,57,53,.16);border:5px solid #FF5A5A}
+.ok{background:rgba(62,224,138,.14);border:5px solid #3EE08A}
+.lab{font-weight:900;font-size:34px;margin-bottom:6px}
+.bad .lab{color:#FF5A5A}.ok .lab{color:#3EE08A}
+.m{direction:ltr;unicode-bidi:isolate;font-family:L;font-weight:900;font-size:46px;color:#fff}
+.hz{position:absolute;left:250px;width:580px;height:380px;border-radius:40px;background:repeating-linear-gradient(-45deg,#FFD84D 0 50px,#14332F 50px 100px);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.hz .in{position:absolute;inset:34px;border-radius:24px;background:#FBFAF4;color:#14332F;display:flex;align-items:center;justify-content:center;gap:24px}
+</style><style>.d{direction:ltr;unicode-bidi:isolate;font-family:L;font-weight:900}
+.stm{position:absolute;left:70px;right:70px;background:#FBFAF4;color:#14332F;border-radius:34px;padding:34px 44px;font-weight:900;font-size:50px;line-height:1.4;text-align:center;box-shadow:0 14px 0 #c9c3ae,0 24px 40px rgba(0,0,0,.45)}
+.vd{position:absolute;left:0;right:0;text-align:center}
+.vb{display:inline-block;border-radius:999px;padding:8px 56px;font-family:Z;font-size:84px;-webkit-text-stroke:3px #0a1a18;paint-order:stroke fill}
+.T{background:#3EE08A;color:#fff}.F{background:#FF5A5A;color:#fff}
+.atom{position:absolute;left:290px;width:500px;height:500px}
+</style></head><body><div class="bg"></div><div class="grid"></div>
+<div class="slide" id="s1"><div class="top"><span class="tag">كيمياء · الصف العاشر</span><span class="num">1/7</span></div>
+<div class="h Z" style="top:150px;font-size:88px">صح ولا غلط؟<br><span class="y">5 جمل عن الذرّة</span></div>
+<svg class="atom" style="top:440px" viewBox="0 0 500 500"><g fill="none" stroke="#9fd0c9" stroke-width="7"><ellipse cx="250" cy="250" rx="220" ry="80"/><ellipse cx="250" cy="250" rx="220" ry="80" transform="rotate(60 250 250)"/><ellipse cx="250" cy="250" rx="220" ry="80" transform="rotate(-60 250 250)"/></g><circle cx="250" cy="250" r="56" fill="#FFD84D" stroke="#0a1a18" stroke-width="7"/><circle cx="470" cy="250" r="20" fill="#3EE08A"/><circle cx="140" cy="60" r="20" fill="#3EE08A"/><circle cx="140" cy="440" r="20" fill="#3EE08A"/><text x="250" y="275" text-anchor="middle" font-family="Z" font-size="70" fill="#14332F">?</text></svg>
+<div class="sub" style="top:990px">كل وحدة فيهم بتطلع بامتحان مبنى الذرّة.<br><b style="color:#FFD84D">عِدّوا كم وحدة جاوبتوا صح</b></div>
+<div class="swipe">← اسحب</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div>
+<div class="slide" id="s2"><div class="top"><span class="tag">الجملة 1</span><span class="num">2/7</span></div>
+<div class="h Z" style="top:140px;font-size:70px">صح <span class="y">ولا</span> غلط؟</div>
+<div class="stm" style="top:290px">رقم الكتلة <span class="d">A</span><br>= بروتونات + إلكترونات</div>
+<div class="sub" style="top:560px;font-size:34px;color:#9fd0c9">جاوب براسك… بعدين انزل لتحت</div>
+<div class="vd" style="top:640px"><span class="vb F">غلط</span></div>
+<div class="bad" style="top:800px"><div class="lab">الصح</div>رقم الكتلة = <b style="color:#FFD84D">بروتونات + نيوترونات</b>.<br>الإلكترونات خفاف كثير وما بتنحسب فيه.<br>مثال: <span class="m">Na-23</span> فيها <span class="m">11</span> بروتون و<span class="m">12</span> نيوترون.</div>
+<div class="swipe" style="bottom:130px">← الجملة الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div>
+<div class="slide" id="s3"><div class="top"><span class="tag">الجملة 2</span><span class="num">3/7</span></div>
+<div class="h Z" style="top:140px;font-size:70px">صح <span class="y">ولا</span> غلط؟</div>
+<div class="stm" style="top:290px">ذرّة الصوديوم صارت <span class="d">Na⁺</span><br>لأنها كسبت بروتون</div>
+<div class="sub" style="top:560px;font-size:34px;color:#9fd0c9">جاوب براسك… بعدين انزل لتحت</div>
+<div class="vd" style="top:640px"><span class="vb F">غلط</span></div>
+<div class="bad" style="top:800px"><div class="lab">الصح</div>البروتونات بالنواة ما بتتغيّر بالتفاعل.<br><span class="m">Na⁺</span> <b style="color:#FFD84D">فقدت إلكترون</b>، فصار عندها بروتون زيادة عن الإلكترونات.<br>الشحنة = بروتونات − إلكترونات.</div>
+<div class="swipe" style="bottom:130px">← الجملة الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div>
+<div class="slide" id="s4"><div class="top"><span class="tag">الجملة 3</span><span class="num">4/7</span></div>
+<div class="h Z" style="top:140px;font-size:70px">صح <span class="y">ولا</span> غلط؟</div>
+<div class="stm" style="top:290px">الأيون السالب <span class="d">Cl⁻</span><br>أكبر من ذرّة <span class="d">Cl</span></div>
+<div class="sub" style="top:560px;font-size:34px;color:#9fd0c9">جاوب براسك… بعدين انزل لتحت</div>
+<div class="vd" style="top:640px"><span class="vb T">صح</span></div>
+<div class="ok" style="top:800px"><div class="lab">صح</div>كسب إلكترون زيادة ← التنافر بين الإلكترونات بيزيد<br>وشحنة النواة نفسها ← <b style="color:#FFD84D">الحجم بيكبر</b>.<br>والعكس: <span class="m">Na⁺</span> أصغر من <span class="m">Na</span>.</div>
+<div class="swipe" style="bottom:130px">← الجملة الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div>
+<div class="slide" id="s5"><div class="top"><span class="tag">الجملة 4</span><span class="num">5/7</span></div>
+<div class="h Z" style="top:140px;font-size:70px">صح <span class="y">ولا</span> غلط؟</div>
+<div class="stm" style="top:290px"><span class="d">Cl-35</span> و <span class="d">Cl-37</span><br>فيهم نفس عدد البروتونات</div>
+<div class="sub" style="top:560px;font-size:34px;color:#9fd0c9">جاوب براسك… بعدين انزل لتحت</div>
+<div class="vd" style="top:640px"><span class="vb T">صح</span></div>
+<div class="ok" style="top:800px"><div class="lab">صح</div>هدول <b style="color:#FFD84D">نظائر</b>: نفس العنصر، نفس <span class="m">Z = 17</span>.<br>الفرق بعدد النيوترونات بس: <span class="m">18</span> مقابل <span class="m">20</span>.</div>
+<div class="swipe" style="bottom:130px">← الجملة الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div>
+<div class="slide" id="s6"><div class="top"><span class="tag">الجملة 5</span><span class="num">6/7</span></div>
+<div class="h Z" style="top:140px;font-size:70px">صح <span class="y">ولا</span> غلط؟</div>
+<div class="stm" style="top:290px">بالدورة من اليسار لليمين<br>حجم الذرّة بيكبر</div>
+<div class="sub" style="top:560px;font-size:34px;color:#9fd0c9">جاوب براسك… بعدين انزل لتحت</div>
+<div class="vd" style="top:640px"><span class="vb F">غلط</span></div>
+<div class="bad" style="top:800px"><div class="lab">الصح</div><b style="color:#FFD84D">بيصغر!</b> شحنة النواة بتزيد وبتشدّ الإلكترونات أكثر،<br>وعدد الطبقات نفسه.<br>بالمجموعة من فوق لتحت: بيكبر (طبقات أكثر).</div>
+<div class="swipe" style="bottom:130px">← الجملة الجاي</div><div class="foot"><img src="logo-white.png"><span>معهد رُوّاد · دبورية</span></div></div>
+<div class="slide" id="s7"><div class="top"><span class="tag">لطلاب العاشر بدبورية</span><span class="num">7/7</span></div>
+<div style="position:absolute;left:0;right:0;top:170px;text-align:center"><img src="logo-white.png" style="width:330px"></div>
+<div class="h Z" style="top:420px;font-size:84px">كم وحدة جبت صح؟<br><span class="y">احكولنا بالكومنت</span></div>
+<div class="card" style="top:690px">عالمنصة تبعت رواد: مبنى الذرّة، النظائر، القائمة الدوريّة، الأيونات… <b>أسئلة جديدة كل مرة</b>، شرح قصير لكل موضوع، و<b>تقرير أخطاء</b> بيبيّن وين الضعف.</div>
+<div style="position:absolute;left:0;right:0;top:1030px;text-align:center">
+<span style="display:inline-block;background:#25D366;border-radius:999px;padding:18px 54px;font-family:L;font-weight:900;font-size:76px;direction:ltr;box-shadow:0 14px 40px rgba(0,0,0,.35)">0546111668</span>
+<div style="margin-top:18px;font-weight:900;font-size:38px;color:#FFD84D">ابعتولنا «امتحان» عالواتساب</div></div></div>
+<script>const n=new URLSearchParams(location.search).get('s')||'1';document.getElementById('s'+n).style.display='block';</script></body></html>

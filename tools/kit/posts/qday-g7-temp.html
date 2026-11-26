@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:R;font-weight:500;src:url(rubik-arabic-500-normal.woff2)}
+@font-face{font-family:R;font-weight:700;src:url(rubik-arabic-700-normal.woff2)}
+@font-face{font-family:R;font-weight:900;src:url(rubik-arabic-900-normal.woff2)}
+@font-face{font-family:L;font-weight:900;src:url(rubik-latin-900-normal.woff2)}
+@font-face{font-family:Z;src:url(lalezar-arabic-400-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:R,L;color:#fff;position:relative;background:#0B201E}
+.bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,#2E6862 0,#1A433F 46%,#0A1D1B 100%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.04) 2px,transparent 2px);background-size:90px 90px}
+.slide{position:absolute;inset:0;display:none}
+.Z{font-family:Z,L;-webkit-text-stroke:4px #0a1a18;paint-order:stroke fill;text-shadow:0 6px 0 #0a1a18}
+.y{color:#FFD84D}.r{color:#FF5A5A}.g{color:#3EE08A}
+.top{position:absolute;top:56px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center}
+.tag{background:#FFD84D;color:#14332F;font-weight:900;font-size:30px;border-radius:999px;padding:10px 30px}
+.num{font-family:L;font-weight:900;font-size:34px;color:#9fd0c9;direction:ltr}
+.foot{position:absolute;bottom:50px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;color:#9fd0c9;font-weight:700;font-size:28px}
+.foot img{height:56px}
+.h{position:absolute;left:60px;right:60px;top:150px;text-align:center;font-size:96px;line-height:1.15}
+.sub{position:absolute;left:80px;right:80px;text-align:center;font-weight:700;font-size:40px;line-height:1.45;color:#e6f4f1}
+.card{position:absolute;left:70px;right:70px;background:rgba(10,30,28,.82);border:5px solid #3EE08A;border-radius:36px;padding:30px 40px;font-weight:700;font-size:40px;line-height:1.45}
+.card b{color:#FFD84D;font-weight:900}
+.swipe{position:absolute;bottom:130px;left:0;right:0;text-align:center;font-weight:900;font-size:36px;color:#FFD84D}
+/* price tag */
+.ptag{position:absolute;background:#FBFAF4;color:#14332F;border-radius:30px 90px 90px 30px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.hole{position:absolute;width:44px;height:44px;border-radius:50%;background:#1A433F;border:8px solid #d9d4c3}
+.big{font-family:L;font-weight:900;direction:ltr}
+.strike{position:relative;display:inline-block}
+.strike:after{content:"";position:absolute;left:-10px;right:-10px;top:50%;height:16px;background:#E53935;border-radius:8px;transform:rotate(-12deg)}
+/* popcorn */
+.pc{position:absolute;bottom:0;display:flex;flex-direction:column;align-items:center}
+.cup{background:repeating-linear-gradient(90deg,#E53935 0 34px,#FBFAF4 34px 68px);clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);border-radius:0 0 18px 18px}
+.corn{border-radius:50% 50% 10px 10px;background:radial-gradient(circle at 30% 40%,#fff6cf 0 18%,transparent 19%),radial-gradient(circle at 70% 30%,#fff2b8 0 20%,transparent 21%),radial-gradient(circle at 50% 70%,#ffeaa0 0 22%,transparent 23%),#FFE48A}
+.price{margin-top:18px;font-family:L;font-weight:900;font-size:64px;direction:ltr;background:#fff;color:#14332F;border-radius:20px;padding:4px 26px}
+.lbl{margin-top:10px;font-weight:900;font-size:36px}
+/* halt */
+.oct{position:absolute;width:250px;height:250px;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);display:flex;flex-direction:column;align-items:center;justify-content:center;background:#E53935}
+.oct .L{font-family:L;font-weight:900;font-size:120px;line-height:1}
+.oct .w{font-weight:900;font-size:40px;margin-top:4px}
+.opt{position:absolute;left:90px;right:90px;height:150px;border-radius:30px;background:rgba(10,30,28,.85);border:5px solid #9fd0c9;display:flex;align-items:center;gap:30px;padding:0 40px;font-weight:900;font-size:52px}
+.opt i{font-style:normal;width:90px;height:90px;border-radius:50%;background:#FFD84D;color:#14332F;display:flex;align-items:center;justify-content:center;font-size:52px}
+.opt.ok{border-color:#3EE08A;background:rgba(62,224,138,.22)} .opt.ok i{background:#3EE08A}
+.opt.no{opacity:.4}
+.ltr{direction:ltr;unicode-bidi:isolate;font-family:L}
+.tiles{position:absolute;left:0;right:0;display:flex;justify-content:center;gap:22px;direction:ltr}
+.tl{width:150px;height:180px;border-radius:28px;background:#FBFAF4;color:#14332F;font-family:L;font-weight:900;font-size:120px;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 0 #c9c3ae,0 24px 40px rgba(0,0,0,.45)}
+.tl.q{background:#FFD84D}
+.res{display:flex;flex-direction:column;align-items:center;gap:10px}
+.rb{width:300px;height:110px;border-radius:20px;background:#FBFAF4;color:#14332F;font-family:L;font-weight:900;font-size:70px;display:flex;align-items:center;justify-content:center;border:8px solid #FFD84D;direction:ltr}
+</style><style>.d{direction:ltr;unicode-bidi:isolate;font-family:L;font-weight:900}</style></head><body><div class="bg"></div><div class="grid"></div><div class="slide" id="1"><div class="top" style="top:170px"><span class="tag">سؤال اليوم · رياضيات سابع</span><span class="num">1/3</span></div>
+<div class="h Z" style="top:260px;font-size:84px">الصبح الحرارة <span class="d r">−3°</span><br>وبالظهر <span class="y">طلعت 8 درجات</span></div>
+<div style="position:absolute;top:470px;left:240px"><svg direction="ltr" style="direction:ltr" viewBox="0 0 600 640" width="600" height="640">
+<rect x="210" y="40" width="80" height="510" rx="40" fill="#FBFAF4" stroke="#0a1a18" stroke-width="8"/>
+<circle cx="250" cy="560" r="70" fill="#5aa9ff" stroke="#0a1a18" stroke-width="8"/>
+<rect x="232" y="359" width="36" height="201" fill="#5aa9ff"/>
+<line x1="300" y1="520" x2="340" y2="520" stroke="#e6f4f1" stroke-width="5"/><text direction="ltr" x="355" y="534" font-family="L" font-weight="900" font-size="40" fill="#e6f4f1" direction="ltr">−10</text><line x1="300" y1="497" x2="325" y2="497" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="474" x2="325" y2="474" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="451" x2="325" y2="451" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="428" x2="325" y2="428" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="405" x2="340" y2="405" stroke="#e6f4f1" stroke-width="5"/><text direction="ltr" x="355" y="419" font-family="L" font-weight="900" font-size="40" fill="#e6f4f1" direction="ltr">−5</text><line x1="300" y1="382" x2="325" y2="382" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="359" x2="325" y2="359" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="336" x2="325" y2="336" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="313" x2="325" y2="313" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="290" x2="340" y2="290" stroke="#e6f4f1" stroke-width="5"/><text direction="ltr" x="355" y="304" font-family="L" font-weight="900" font-size="40" fill="#e6f4f1" direction="ltr">0</text><line x1="300" y1="267" x2="325" y2="267" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="244" x2="325" y2="244" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="221" x2="325" y2="221" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="198" x2="325" y2="198" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="175" x2="340" y2="175" stroke="#e6f4f1" stroke-width="5"/><text direction="ltr" x="355" y="189" font-family="L" font-weight="900" font-size="40" fill="#e6f4f1" direction="ltr">5</text><line x1="300" y1="152" x2="325" y2="152" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="129" x2="325" y2="129" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="106" x2="325" y2="106" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="83" x2="325" y2="83" stroke="#e6f4f1" stroke-width="5"/><line x1="300" y1="60" x2="340" y2="60" stroke="#e6f4f1" stroke-width="5"/><text direction="ltr" x="355" y="74" font-family="L" font-weight="900" font-size="40" fill="#e6f4f1" direction="ltr">10</text>
+<line x1="150" y1="359" x2="232" y2="359" stroke="#FFD84D" stroke-width="8"/>
+<text direction="ltr" x="140" y="375" text-anchor="end" font-family="L" font-weight="900" font-size="56" fill="#FFD84D">−3°</text>
+</svg></div>
+<div class="sub" style="top:1085px;color:#fff;font-weight:900;font-size:52px">قديش صارت <span class="y">بالظهر؟</span></div>
+<div class="opt" style="top:1185px"><i>أ</i><span class="d">11°</span></div><div class="opt" style="top:1360px"><i>ب</i><span class="d">5°</span></div><div class="opt" style="top:1535px"><i>ج</i><span class="d">−5°</span></div>
+<div class="sub" style="top:1715px;color:#FFD84D;font-weight:900">جاوبوا قبل ما تقلبوا… الجواب بالستوري الجاي</div></div>
+<div class="slide" id="2"><div class="top" style="top:170px"><span class="tag">الجواب</span><span class="num">2/3</span></div>
+<div class="h Z" style="top:250px;font-size:120px"><span class="g">ب · <span class="d">5°</span></span></div>
+<div style="position:absolute;top:430px;left:0;right:0;height:330px"><svg direction="ltr" viewBox="0 0 960 330" width="960" height="330" style="position:absolute;left:60px">
+<line x1="40" y1="230" x2="920" y2="230" stroke="#9fd0c9" stroke-width="8"/>
+<line x1="80" y1="210" x2="80" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="80" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#9fd0c9">−4</text><line x1="160" y1="210" x2="160" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="160" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#FFD84D">−3</text><line x1="240" y1="210" x2="240" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="240" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#9fd0c9">−2</text><line x1="320" y1="210" x2="320" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="320" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#9fd0c9">−1</text><line x1="400" y1="210" x2="400" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="400" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#fff">0</text><line x1="480" y1="210" x2="480" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="480" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#9fd0c9">1</text><line x1="560" y1="210" x2="560" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="560" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#9fd0c9">2</text><line x1="640" y1="210" x2="640" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="640" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#9fd0c9">3</text><line x1="720" y1="210" x2="720" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="720" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#9fd0c9">4</text><line x1="800" y1="210" x2="800" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="800" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#FFD84D">5</text><line x1="880" y1="210" x2="880" y2="250" stroke="#9fd0c9" stroke-width="6"/><text direction="ltr" x="880" y="300" text-anchor="middle" font-family="L" font-weight="900" font-size="38" fill="#9fd0c9">6</text>
+<path d="M160 205 Q280 40 400 205" stroke="#5aa9ff" stroke-width="9" fill="none"/><text direction="ltr" x="280" y="95" text-anchor="middle" font-family="L" font-weight="900" font-size="46" fill="#5aa9ff">+3</text>
+<path d="M400 205 Q600 0 800 205" stroke="#3EE08A" stroke-width="9" fill="none"/><text direction="ltr" x="600" y="70" text-anchor="middle" font-family="L" font-weight="900" font-size="46" fill="#3EE08A">+5</text>
+<circle cx="160" cy="230" r="18" fill="#FF5A5A"/><circle cx="800" cy="230" r="18" fill="#3EE08A"/>
+</svg></div>
+<div class="card" style="top:820px;text-align:center;font-size:42px">الطلوع يعني <b>جمع</b>:<br><span class="d" style="font-size:60px">−3 + 8 = 5</span><br>أول <b>3 درجات</b> بيوصّلونا للصفر، وبيضل <b>5</b> فوقه.</div>
+<div class="card" style="top:1260px;text-align:center;font-size:38px;border-color:#FF5A5A">اللي جاوب <span class="d">11°</span> نسي إنه بلّش من <b>تحت الصفر</b>،<br>واللي جاوب <span class="d">−5°</span> طرح بدل ما يجمع.</div>
+<div class="sub" style="top:1600px;color:#FFD84D;font-weight:900;font-size:48px">مين جاوب ب من أول مرة؟</div></div>
+<div class="slide" id="3"><div class="top" style="top:170px"><span class="tag">دبورية بتتحضّر للامتحانات</span><span class="num">3/3</span></div>
+<div style="position:absolute;left:0;right:0;top:330px;text-align:center"><img src="logo-white.png" style="width:340px"></div>
+<div class="h Z" style="top:620px;font-size:92px">الأعداد السالبة<br><span class="y">صارت واضحة</span></div>
+<div class="card" style="top:930px">محاور الأعداد · مقارنة الأعداد السالبة · هيئة المحاور · الزوايا… <b>أسئلة جديدة كل مرة عالمنصة</b> · تقرير أخطاء · متابعة كل يوم · والأهل بيشوفوا التقدّم.</div>
+<div style="position:absolute;left:0;right:0;top:1300px;text-align:center"><span style="display:inline-block;background:#25D366;border-radius:999px;padding:18px 54px;font-family:L;font-weight:900;font-size:80px;direction:ltr">0546111668</span>
+<div style="margin-top:18px;font-weight:900;font-size:40px;color:#FFD84D">ابعتولنا «امتحان» عالواتساب</div></div></div><script>const n=new URLSearchParams(location.search).get("s");document.getElementById(n).style.display="block";</script></body></html>

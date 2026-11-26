@@ -4,7 +4,7 @@ Everything needed to keep the RUWAD page (ruwad.academy / FB page 10237103884574
 
 ## Rules (from Fawaz)
 - Story order: space a day's stories 10 min apart (13:00 question, 13:10 answer, 13:20 CTA). 1-min gaps got published out of order on 19.11.
-- Post EVERY day: stories daily + a reel or carousel at least every 2 days; always keep 48h scheduled ahead in Metricool (brand id 7641800, timezone Asia/Jerusalem). Fawaz gave full permission (18.11.2026) to create and schedule without per-post approval.
+- Post EVERY day: stories daily + a reel or carousel at least every 2 days; always keep 48h scheduled ahead in Metricool (brand id 7641800, timezone Asia/Jerusalem). APPROVAL RULE (Fawaz, 25.11.2026): prepare everything, but do NOT schedule until Fawaz replies «موافق» on the `[موافقة] محتوى رواد` issue in xcode5877-dotcom/nmd-hub (see AGENTS-RUNBOOK.md there). The 18.11 blanket permission is replaced.
 - Goal: grow organic followers in Daburiyya and the surrounding area; exam season (1.11–20.12.2026).
 - Style: dark teal brand (#1A433F / #FFD84D / #3EE08A), Lalezar headlines + Rubik, every post with a visual hook. No clichés (no results posts, no testimonials). Never claim "guaranteed" results.
 - Voice-overs: synthetic voice ONLY in fusha (edge-tts ar-JO-TaimNeural), and NO word containing ج (the voice says it like Egyptian g). Dialect voices sound wrong — never use them. On-screen text can be Palestinian dialect.
@@ -28,3 +28,4 @@ Account retalbox (act 1430002849233135), campaign "RUWAD | امتحانات | و
 ## Log
 - 24.11: 26.11 stories q-h (g3 order of operations 6+4×2=14) were scheduled by the 10:23 run, whose GitHub push failed; images recovered from Metricool into stories/qday/q-h1..3.jpg. Next due: reel 27.11 19:00 (ep5) + stories 27.11.
 - 25.11: someone else scheduled 2 reels on 25.11 (17:00 math g8 3 mistakes, 21:00 English 3 mistakes). Added 27.11 stories q-i + 27.11 19:00 reel ep5 (chem g9). Next due: stories 28.11 + carousel 29.11 19:00.
+- 26.11: prepared (NOT scheduled, waiting for Fawaz approval): stories q-j g7 temperature −3+8=5 → 28.11 13:00/13:10/13:20; stories q-k g2 sun/moon lam (الشّمس) → 29.11 13:00/13:10/13:20; carousel chem10tf «صح ولا غلط؟ 5 جمل عن الذرّة» (g10 chem: A=p+n, Na⁺ lost e⁻, Cl⁻>Cl, Cl-35/37 isotopes, period radius shrinks) → 29.11 19:00. Run had no access to nmd-hub, so no approval issue was opened; approval requested via message to Fawaz.
